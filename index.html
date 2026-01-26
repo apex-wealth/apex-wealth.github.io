@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>ApexWealth</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
     body {
       margin: 0;
@@ -12,82 +13,129 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
       text-align: center;
     }
+
     .wrap {
       max-width: 900px;
       margin: auto;
-      padding: 100px 20px;
+      padding: 80px 20px;
     }
+
+    /* LOGO */
+    .logo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      width: 120px;
+      max-width: 40vw;
+      height: auto;
+      display: block;
+    }
+
+    /* HERO */
     h1 {
       font-size: 56px;
       letter-spacing: 2px;
       margin-bottom: 10px;
     }
+
     .tagline {
       color: #bdbdbd;
       font-size: 18px;
       margin-bottom: 40px;
     }
+
     .line {
       width: 70px;
       height: 2px;
       background: #ffffff;
       margin: 40px auto;
     }
+
     p {
       font-size: 20px;
       line-height: 1.7;
       color: #d6d6d6;
-    } .logo-wrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 24px;
+    }
+
+    /* SECTIONS */
+    .section {
+      max-width: 780px;
+      margin: 90px auto;
+      padding: 0 20px;
+    }
+
+    .section h2 {
+      font-size: 28px;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .section p {
+      font-size: 18px;
+      line-height: 1.75;
+      color: #bdbdbd;
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 30px 0;
+    }
+
+    .list li {
+      font-size: 18px;
+      color: #d6d6d6;
+      margin: 12px 0;
+    }
+
+    /* FADE-IN ANIMATION */
+    .fade {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .fade-delay-1 { animation-delay: 0.2s; }
+    .fade-delay-2 { animation-delay: 0.4s; }
+    .fade-delay-3 { animation-delay: 0.6s; }
+    .fade-delay-4 { animation-delay: 0.8s; }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    footer {
+  margin-top: 120px;
+  padding: 40px 20px;
+  border-top: 1px solid #1f1f1f;
+  color: #8f8f8f;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-.logo {
-  width: 120px;
-  max-width: 40vw;
-  height: auto;
-  display: block;
-  .section {
-  max-width: 780px;
-  margin: 90px auto;
-  padding: 0 20px;
-}
-
-.section h2 {
-  font-size: 28px;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
-}
-
-.section p {
-  font-size: 18px;
-  line-height: 1.75;
+footer strong {
   color: #bdbdbd;
-}
-
-.list {
-  list-style: none;
-  padding: 0;
-  margin: 30px 0;
-}
-
-.list li {
-  font-size: 18px;
-  color: #d6d6d6;
-  margin: 12px 0;
-}
 }
   </style>
 </head>
+
 <body>
 
-  <div class="wrap">
-  <div class="logo-wrap">
-  <img src="8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png" alt="ApexWealth Logo" class="logo">
-</div>
-  <h1>APEXWEALTH</h1>
+  <!-- HERO -->
+  <div class="wrap fade fade-delay-1">
+
+    <div class="logo-wrap">
+      <img src="8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png" alt="ApexWealth Logo" class="logo">
+    </div>
+
+    <h1>APEXWEALTH</h1>
     <div class="line"></div>
+
     <div class="tagline">
       Cars • Technology • Long-Term Wealth
     </div>
@@ -96,68 +144,126 @@
       Built on discipline, learning, and compounding.<br>
       No hype. No shortcuts. Just long-term thinking.
     </p>
+
   </div>
-<section class="section">
-  <h2>Introduction</h2>
-  <div class="line"></div>
-  <p>
-    I am the founder of ApexWealth.
-  </p>
-  <p>
-    My work focuses on understanding and building long-term value at the
-    intersection of performance systems, technology, and capital growth.
-  </p>
-  <p>
-    ApexWealth represents a disciplined approach to learning, execution,
-    and compounding progress over time.
-  </p>
-</section>
 
-<section class="section">
-  <h2>What I Do</h2>
-  <div class="line"></div>
-  <p>
-    I specialise in analysing systems, improving decision-making processes,
-    and applying long-term thinking to complex problems.
-  </p>
-  <p>
-    My approach prioritises fundamentals, sustainability, and clarity over
-    short-term optimisation.
-  </p>
-</section>
+  <!-- INTRODUCTION -->
+  <section class="section fade fade-delay-2">
+    <h2>Introduction</h2>
+    <div class="line"></div>
 
-<section class="section">
-  <h2>Interests</h2>
-  <div class="line"></div>
-  <p>
-    Cars • Technology • Long-Term Wealth
-  </p>
-  <p>
-    These areas are connected by a shared foundation of discipline,
-    engineering thinking, and respect for process.
-  </p>
-</section>
+    <p>
+      I am the founder of ApexWealth.
+    </p>
 
-<section class="section">
-  <h2>Startup Support</h2>
-  <div class="line"></div>
+    <p>
+      My focus is on building long-term value at the intersection of
+      performance-driven systems, modern technology, and capital allocation.
+    </p>
+
+    <p>
+      ApexWealth reflects a disciplined approach to learning, execution,
+      and compounding progress over extended time horizons.
+    </p>
+  </section>
+
+  <!-- WHAT I DO -->
+  <section class="section fade fade-delay-3">
+    <h2>What I Do</h2>
+    <div class="line"></div>
+
+    <p>
+      I work on analysing systems, improving strategic decision-making,
+      and applying long-term thinking to complex technical and financial problems.
+    </p>
+
+    <p>
+      The emphasis is on fundamentals, durability, and sustainable outcomes
+      rather than short-term optimisation.
+    </p>
+  </section>
+
+  <!-- INTERESTS -->
+  <section class="section fade fade-delay-4">
+    <h2>Interests</h2>
+    <div class="line"></div>
+
+    <p>
+      Cars • Technology • Long-Term Wealth
+    </p>
+
+    <p>
+      These domains are connected by shared principles:
+      engineering discipline, respect for process, and compounding advantage over time.
+    </p>
+  </section>
+
+  <!-- STARTUP SUPPORT -->
+  <section class="section fade fade-delay-4">
+    <h2>Startup Support</h2>
+    <div class="line"></div>
+
+    <p>
+      I support early-stage startups and founders in establishing
+      strong operational, technical, and financial foundations.
+    </p>
+
+    <ul class="list">
+      <li>Financial planning and capital structuring</li>
+      <li>Early-stage strategic guidance</li>
+      <li>Technology selection and system architecture</li>
+      <li>Operational clarity and process optimisation</li>
+      <li>Long-term scalability and risk management</li>
+    </ul>
+
+    <p>
+      The focus is on building resilient organisations capable of
+      sustained growth rather than short-term momentum.
+    </p>
+  </section>
+
+  <!-- COLLABORATION -->
+  <section class="section fade fade-delay-4">
+    <h2>Collaboration</h2>
+    <div class="line"></div>
+
+    <p>
+      ApexWealth is open to collaborating with founders, startups,
+      and individuals aligned with long-term thinking and disciplined execution.
+    </p>
+
+    <p>
+      Discussions related to strategy, technology, or financial structure
+      are welcome.
+    </p>
+
+    <p style="margin-top:32px;">
+      <strong>Contact</strong><br>
+      yourname@email.com
+    </p>
+  </section>
+<footer>
   <p>
-    I support early-stage startups and founders in building strong foundations
-    for sustainable growth.
+    <strong>Legal Disclaimer</strong><br><br>
+    ApexWealth is a personal initiative focused on learning, research,
+    and long-term thinking around technology, systems, and capital.
   </p>
 
-  <ul class="list">
-    <li>Financial planning and capital structuring</li>
-    <li>Strategic guidance for early-stage growth</li>
-    <li>Technology selection and system design</li>
-    <li>Operational clarity and process optimisation</li>
-    <li>Long-term scalability and risk awareness</li>
-  </ul>
+  <p>
+    Content presented on this site is for informational and educational
+    purposes only and should not be considered financial, investment,
+    or legal advice.
+  </p>
 
   <p>
-    The focus remains on building resilient organisations rather than
-    pursuing short-term momentum.
+    Any collaboration, guidance, or discussion is contextual and
+    non-binding. Decisions and outcomes remain the responsibility
+    of the respective parties.
   </p>
-</section>
+
+  <p style="margin-top: 24px;">
+    © 2026 ApexWealth. All rights reserved.
+  </p>
+</footer>
 </body>
 </html>
