@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <h1 APEX WEALTH</h1>
+  <title>ApexWealth</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    /* TRUST BADGE */
+    /* ================= TRUST BADGE ================= */
     .trust-badge {
       display: inline-flex;
       align-items: center;
@@ -21,6 +21,7 @@
       margin: 24px auto 0;
     }
 
+    /* ================= THEME ================= */
     :root {
       --bg: #0b0b0b;
       --text: #ffffff;
@@ -48,7 +49,7 @@
       background-image: var(--glow);
     }
 
-    /* NAVBAR */
+    /* ================= NAVBAR ================= */
     .navbar {
       position: sticky;
       top: 0;
@@ -121,11 +122,11 @@
       border-radius: 8px;
     }
 
-    /* HERO */
+    /* ================= HERO ================= */
     .wrap {
       max-width: 900px;
-      margin: auto;
-      padding: 60px 20px 72px;
+      margin: 0 auto;
+      padding: 48px 20px 56px;
     }
 
     .logo {
@@ -133,25 +134,37 @@
       max-width: 55vw;
       filter: grayscale(100%) brightness(1.25);
       opacity: 0.95;
-      margin-bottom: 26px;
+      margin-bottom: 22px;
     }
 
-    h1 {
-      font-size: clamp(38px, 8vw, 56px);
-      letter-spacing: 2px;
+    .title {
+      font-size: clamp(34px, 6.5vw, 54px);
+      letter-spacing: 0.28em;
+      font-weight: 700;
+      text-transform: uppercase;
       line-height: 1.1;
+      margin: 14px 0 10px;
     }
 
     .tagline {
+      font-size: 17px;
       color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .hero-sub {
       font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 18px auto 0;
+      line-height: 1.5;
     }
 
     .line {
-      width: 70px;
+      width: 64px;
       height: 2px;
       background: var(--text);
-      margin: 32px auto;
+      margin: 28px auto;
     }
 
     .hero-btn {
@@ -162,16 +175,10 @@
       color: var(--text);
       text-decoration: none;
       border: 1px solid var(--border);
-      margin-top: 32px;
+      margin-top: 28px;
     }
-    .title {
-  font-size: clamp(38px, 8vw, 56px);
-  letter-spacing: 0.22em;   /* spacing between letters */
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
 
-    /* SECTIONS */
+    /* ================= SECTIONS ================= */
     .section {
       max-width: 700px;
       margin: 80px auto;
@@ -189,7 +196,7 @@
       line-height: 1.6;
     }
 
-    /* PARTNER */
+    /* ================= PARTNER ================= */
     .partner-box {
       max-width: 520px;
       margin: 48px auto 0;
@@ -247,14 +254,18 @@
 
 <!-- HERO -->
 <div class="wrap">
-  <img src="8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png" class="logo">
+  <img src="8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png" class="logo" alt="ApexWealth Logo">
+
   <h1 class="title">APEX&nbsp;WEALTH</h1>
   <div class="line"></div>
-  <div class="tagline">Cars • Technology • Long-Term Wealth • Forex • Escrow Services </div>
 
-  <p style="color:var(--muted); margin-top:16px;">
-  A space for people who choose effort over excuses.
-</p>
+  <div class="tagline">
+    Cars • Technology • Long-Term Wealth • Forex • Escrow Services
+  </div>
+
+  <p class="hero-sub">
+    A space for people who choose effort over excuses.
+  </p>
 
   <div class="trust-badge">
     🔒 Transaction Safety • Structured • Secure
@@ -265,14 +276,12 @@
   <div id="partner-slot"></div>
 </div>
 
-<!-- ABOUT -->
+<!-- SECTIONS -->
 <section class="section">
   <h2>Introduction</h2>
   <div class="line"></div>
   <p>
-    <p>
-  I’m TJ. I focus on building, investing and execute for long-term outcomes.
-</p>
+    I’m TJ. I focus on building, investing and execute for long-term outcomes.
   </p>
 </section>
 
@@ -288,7 +297,7 @@
   <h2>Interests</h2>
   <div class="line"></div>
   <p>
-    Automotive Engineering•	High-Performance Cars•Electronics•ProjectCinematic Video Editing
+    Automotive Engineering • High-Performance Cars • Electronics Projects • Cinematic Video Editing
   </p>
 </section>
 
@@ -335,12 +344,10 @@
     }
   })();
 
-  // Partner (JS-injected)
   document.getElementById("partner-slot").innerHTML = `
     <div class="partner-box">
       <p>📈 Partner — Trade global forex markets with Exness.</p>
-      <a href="https://one.exnessonelink.com/a/itpt789kit?source=app&platform=mobile&pid=mobile_share"
-         target="_blank">
+      <a href="https://one.exnessonelink.com/a/itpt789kit?source=app&platform=mobile&pid=mobile_share" target="_blank">
         Try Exness Forex Trading →
       </a>
     </div>
