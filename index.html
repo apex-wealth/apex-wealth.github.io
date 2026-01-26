@@ -7,344 +7,336 @@
 
   <style>
   .trust-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  color: #d0d0d0;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(6px);
-  margin: 24px auto 0;
-}  /* ================= THEME ================= */
-    :root {
-      --bg: #0b0b0b;
-      --text: #ffffff;
-      --muted: #bdbdbd;
-      --card: rgba(18,18,18,0.75);
-      --border: #1f1f1f;
-      --glow: radial-gradient(circle at top, rgba(120,120,120,0.15), transparent 60%);
-    }
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: #d0d0d0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    margin: 24px auto 0;
+  }
 
-    body.light {
-      --bg: #f5f5f5;
-      --text: #0b0b0b;
-      --muted: #555;
-      --card: rgba(255,255,255,0.8);
-      --border: #ddd;
-      --glow: radial-gradient(circle at top, rgba(0,0,0,0.08), transparent 60%);
-    }
+  :root {
+    --bg: #0b0b0b;
+    --text: #ffffff;
+    --muted: #bdbdbd;
+    --card: rgba(18,18,18,0.75);
+    --border: #1f1f1f;
+    --glow: radial-gradient(circle at top, rgba(120,120,120,0.15), transparent 60%);
+  }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
-      text-align: center;
-      background-image: var(--glow);
-    }
+  body.light {
+    --bg: #f5f5f5;
+    --text: #0b0b0b;
+    --muted: #555;
+    --card: rgba(255,255,255,0.8);
+    --border: #ddd;
+    --glow: radial-gradient(circle at top, rgba(0,0,0,0.08), transparent 60%);
+  }
 
-    /* ================= NAVBAR ================= */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 20px;
-      backdrop-filter: blur(12px);
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-    }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+    text-align: center;
+    background-image: var(--glow);
+  }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-    }
+  /* NAVBAR */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    backdrop-filter: blur(12px);
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+  }
 
-    .brand-badge {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.08);
-      font-size: 14px;
-      font-weight: 700;
-    }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+  }
 
-    .nav-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
+  .brand-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.08);
+    font-size: 14px;
+    font-weight: 700;
+  }
 
-    .nav-btn {
-      padding: 8px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-      font-size: 14px;
-    }
+  .nav-actions {
+    display: flex;
+    gap: 10px;
+  }
 
-    .contact-menu {
-      display: none;
-      position: absolute;
-      right: 20px;
-      top: 64px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 10px;
-      text-align: left;
-    }
+  .nav-btn {
+    padding: 8px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 14px;
+  }
 
-    .contact-menu a {
-      display: block;
-      padding: 8px 12px;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 14px;
-    }
+  .contact-menu {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 64px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 10px;
+    text-align: left;
+  }
 
-    .contact-menu a:hover {
-      background: rgba(255,255,255,0.05);
-      border-radius: 8px;
-    }
+  .contact-menu a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+  }
 
-    /* ================= HERO ================= */
-    .wrap {
-  max-width: 900px;
-  margin: auto;
-  padding: 60px 20px 72px;
-}
+  .contact-menu a:hover {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+  }
 
-    .logo {
-  width: 140px;              /* bigger, more authority */
-  max-width: 55vw;           /* responsive on mobile */
-  height: auto;
-  filter: grayscale(100%) brightness(1.25) contrast(1.1);
-  opacity: 0.95;
-  margin-bottom: 26px;
-}
+  /* HERO */
+  .wrap {
+    max-width: 900px;
+    margin: auto;
+    padding: 60px 20px 72px;
+  }
 
-    h1 {
-  font-size: clamp(38px, 8vw, 56px);
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-  line-height: 1.1;
-    }
+  .logo {
+    width: 160px;
+    max-width: 55vw;
+    filter: grayscale(100%) brightness(1.25) contrast(1.1);
+    opacity: 0.95;
+    margin-bottom: 26px;
+  }
 
-    .tagline {
-      color: var(--muted);
-      font-size: 18px;
-    }
+  h1 {
+    font-size: clamp(38px, 8vw, 56px);
+    letter-spacing: 2px;
+    line-height: 1.1;
+  }
 
-    .line {
-      width: 70px;
-      height: 2px;
-      background: var(--text);
-      margin: 32px auto;
-    }
+  .tagline {
+    color: var(--muted);
+    font-size: 18px;
+  }
 
-    /* ================= SECTIONS ================= */
-    .section {
-      max-width: 700px;
-      margin: 80px auto;
-      padding: 0 20px;
-    }
+  .line {
+    width: 70px;
+    height: 2px;
+    background: var(--text);
+    margin: 32px auto;
+  }
 
-    .section h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 22px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.08);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 16px;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
 
-    .section p {
-      font-size: 18px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+  /* SECTIONS */
+  .section {
+    max-width: 700px;
+    margin: 80px auto;
+    padding: 0 20px;
+  }
 
-    /* ================= SCROLL ================= */
-    .scroll-indicator {
-      width: 20px;
-      height: 36px;
-      border: 1.5px solid #666;
-      border-radius: 12px;
-      margin: 50px auto 0;
-      position: relative;
-    }
+  .section h2 {
+    font-size: 28px;
+  }
 
-    .scroll-indicator::after {
-      content: "";
-      width: 4px;
-      height: 6px;
-      background: #888;
-      border-radius: 2px;
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: scroll 1.6s infinite;
-    }
+  .section p {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
 
-    @keyframes scroll {
-      0% { opacity: 0; top: 8px; }
-      30% { opacity: 1; }
-      100% { opacity: 0; top: 20px; }
-    }
+  /* PARTNER */
+  .partner-box {
+    max-width: 520px;
+    margin: 48px auto 0;
+    padding: 18px 22px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
 
-    footer {
-      padding: 40px 20px;
-      border-top: 1px solid var(--border);
-      font-size: 14px;
-      color: var(--muted);
-    }.hero-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 22px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.08);
-  color: var(--text);
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
-  border: 1px solid var(--border);
-  backdrop-filter: blur(10px);
-  transition: all 0.25s ease;
-}
+  .partner-box p {
+    font-size: 14px;
+    color: var(--muted);
+  }
 
-.hero-btn:hover {
-  background: rgba(255,255,255,0.14);
-  transform: translateY(-1px);
-}
+  .partner-box a {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .tooltip {
+    border-bottom: 1px dotted #888;
+    cursor: help;
+    position: relative;
+  }
+
+  .tooltip span {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 140%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #111;
+    color: #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    width: 220px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    transition: opacity 0.2s ease;
+  }
+
+  .tooltip:hover span {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  footer {
+    padding: 40px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--muted);
+  }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="brand">
-      <div class="brand-badge">AW</div>
-      <span>ApexWealth</span>
-    </div>
-
-    <div class="nav-actions">
-      <button class="nav-btn" onclick="toggleContact()">Contact</button>
-      <button class="nav-btn" onclick="toggleTheme()">☀︎ / ☾</button>
-    </div>
-
-    <div class="contact-menu" id="contactMenu">
-      <a href="mailto:realmetj11@email.com">Email</a>
-      <a href="https://github.com/apex-wealth" target="_blank">GitHub</a>
-      <a href="https://www.instagram.com/tj__teja__" target="_blank">Instagram</a>
-    </div>
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="brand">
+    <div class="brand-badge">AW</div>
+    ApexWealth
+  </div>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="toggleContact()">Contact</button>
+    <button class="nav-btn" onclick="toggleTheme()">☀︎ / ☾</button>
   </div>
 
-  <!-- HERO -->
-  <div class="wrap">
-    <img src="8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png" class="logo" alt="ApexWealth Logo">
-    <h1>APEXWEALTH</h1>
-    <div class="line"></div>
-    <div class="tagline">Cars • Technology • Long-Term Wealth • Forex</div>
-
-    <p style="color:var(--muted); margin-top:20px;">
-      Disciplined thinking. Long-term execution. Compounding progress.
-    </p>
-    <div class="trust-badge">
-  🔒 Transaction Safety • Structured • Account-Separated
+  <div class="contact-menu" id="contactMenu">
+    <a href="mailto:realmetj11@email.com">Email</a>
+    <a href="https://github.com/apex-wealth" target="_blank">GitHub</a>
+    <a href="https://www.instagram.com/tj__teja__" target="_blank">Instagram</a>
+  </div>
 </div>
-  <div style="margin-top:32px;">
-  <a href="mailto:realmetj11@email.com" class="hero-btn">Contact Me →</a>
+
+<!-- HERO -->
+<div class="wrap">
+  <img src="8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png" class="logo">
+  <h1>APEXWEALTH</h1>
+  <div class="line"></div>
+  <div class="tagline">Cars • Technology • Long-Term Wealth • Forex</div>
+  <p style="color:var(--muted); margin-top:20px;">
+    Disciplined thinking. Long-term execution. Compounding progress.
+  </p>
+
+  <div class="trust-badge">
+    🔒 Transaction Safety • Structured • Account-Separated
   </div>
-    <div class="scroll-indicator"></div>
-  </div>
 
-  <!-- INTRO -->
-  <section class="section">
-    <h2>Introduction</h2>
-    <div class="line"></div>
-    <p>
-      Results-driven execution. Complex problems accepted. Serious outcomes command commitment.
-    </p>
-  </section>
+  <div id="partner-slot"></div>
+</div>
 
-  <!-- WHAT I DO -->
-  <section class="section">
-    <h2>What I Do</h2>
-    <div class="line"></div>
-    <p>
-      Build, invest, and execute across technology, trading, and scalable businesses.
-    </p>
-  </section>
+<footer>
+  ApexWealth is a personal initiative focused on long-term learning.<br>
+  No financial or investment advice provided.<br><br>
+  © 2026 ApexWealth. All rights reserved.
+</footer>
 
-  <!-- INTERESTS -->
-  <section class="section">
-    <h2>Interests</h2>
-    <div class="line"></div>
-    <p>
-      Performance systems, markets, engineering discipline, and compounding advantages.
-    </p>
-  </section>
+<script>
+  function toggleContact() {
+    const m = document.getElementById("contactMenu");
+    m.style.display = m.style.display === "block" ? "none" : "block";
+  }
 
-  <!-- STARTUP SUPPORT -->
-  <section class="section">
-    <h2>Startup Support</h2>
-    <div class="line"></div>
-    <p>
-      Supporting founders with clarity, structure, and long-term strategic thinking.
-    </p>
-  </section>
+  function toggleTheme() {
+    document.body.classList.toggle("light");
+    localStorage.setItem("theme",
+      document.body.classList.contains("light") ? "light" : "dark"
+    );
+  }
 
-  <!-- HELP -->
-  <section class="section">
-    <h2>Escrow/Transaction service</h2>
-    <div class="line"></div>
-    <p>Secure transaction structuring to protect funds, trust, and execution integrity.
-
-    </p>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    ApexWealth is a personal initiative focused on long-term learning.<br>
-    No financial or investment advice provided.<br><br>
-    © 2026 ApexWealth. All rights reserved.
-  </footer>
-
-  <!-- SCRIPTS -->
-  <script>
-    function toggleContact() {
-      const menu = document.getElementById("contactMenu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
+  (function () {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light" ||
+        (!saved && window.matchMedia("(prefers-color-scheme: light)").matches)) {
+      document.body.classList.add("light");
     }
+  })();
 
-    function toggleTheme() {
-      document.body.classList.toggle("light");
-      localStorage.setItem("theme",
-        document.body.classList.contains("light") ? "light" : "dark"
-      );
-    }
+  function trackExnessClick() {
+    console.log("Exness Partner Click");
+  }
 
-    (function () {
-      const saved = localStorage.getItem("theme");
-      if (saved === "light" ||
-          (!saved && window.matchMedia("(prefers-color-scheme: light)").matches)) {
-        document.body.classList.add("light");
-      }
-    })();
-  </script>
+  // Inject partner (hidden from bots)
+  document.getElementById("partner-slot").innerHTML = `
+    <div class="partner-box">
+      <p>
+        📈 Partner — Trade global forex markets with Exness.
+        <span class="tooltip">ⓘ
+          <span>
+            Trading involves risk. Capital is at risk. No advice provided.
+          </span>
+        </span>
+      </p>
+      <a href="https://one.exnessonelink.com/a/itpt789kit?source=app&platform=mobile&pid=mobile_share"
+         target="_blank"
+         rel="noopener"
+         onclick="trackExnessClick()">
+        Try Exness Forex Trading →
+      </a>
+    </div>
+  `;
+</script>
 
 </body>
 </html>
