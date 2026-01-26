@@ -192,7 +192,26 @@
       border-top: 1px solid var(--border);
       font-size: 14px;
       color: var(--muted);
-    }
+    }.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+}
+
+.hero-btn:hover {
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-1px);
+}
   </style>
 </head>
 
@@ -227,7 +246,9 @@
     <p style="color:var(--muted); margin-top:20px;">
       Disciplined thinking. Long-term execution. Compounding progress.
     </p>
-
+  <div style="margin-top:32px;">
+  <a href="mailto:realmetj11@email.com" class="hero-btn">Contact Me →</a>
+  </div>
     <div class="scroll-indicator"></div>
   </div>
 
