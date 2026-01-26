@@ -6,32 +6,120 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    body {
-      margin: 0;
-      background-color: #0b0b0b;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
-      text-align: center;
+    /* ================= THEME ================= */
+    :root {
+      --bg: #0b0b0b;
+      --text: #ffffff;
+      --muted: #bdbdbd;
+      --card: rgba(18,18,18,0.75);
+      --border: #1f1f1f;
+      --glow: radial-gradient(circle at top, rgba(120,120,120,0.15), transparent 60%);
     }
 
+    body.light {
+      --bg: #f5f5f5;
+      --text: #0b0b0b;
+      --muted: #555;
+      --card: rgba(255,255,255,0.8);
+      --border: #ddd;
+      --glow: radial-gradient(circle at top, rgba(0,0,0,0.08), transparent 60%);
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      text-align: center;
+      background-image: var(--glow);
+    }
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      backdrop-filter: blur(12px);
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .brand-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.08);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .nav-btn {
+      padding: 8px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .contact-menu {
+      display: none;
+      position: absolute;
+      right: 20px;
+      top: 64px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .contact-menu a {
+      display: block;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .contact-menu a:hover {
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+    }
+
+    /* ================= HERO ================= */
     .wrap {
       max-width: 900px;
       margin: auto;
       padding: 80px 20px;
     }
 
-    .logo-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-
     .logo {
       width: 120px;
-      max-width: 40vw;
-      height: auto;
-      filter: grayscale(100%) brightness(1.3) contrast(1.1);
+      filter: grayscale(100%) brightness(1.3);
       opacity: 0.9;
+      margin-bottom: 24px;
     }
 
     h1 {
@@ -41,18 +129,18 @@
     }
 
     .tagline {
-      color: #bdbdbd;
+      color: var(--muted);
       font-size: 18px;
-      margin-bottom: 24px;
     }
 
     .line {
       width: 70px;
       height: 2px;
-      background: #ffffff;
+      background: var(--text);
       margin: 32px auto;
     }
 
+    /* ================= SECTIONS ================= */
     .section {
       max-width: 700px;
       margin: 80px auto;
@@ -61,26 +149,16 @@
 
     .section h2 {
       font-size: 28px;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .section p {
       font-size: 18px;
-      color: #bdbdbd;
+      color: var(--muted);
       line-height: 1.6;
     }
 
-    footer {
-      margin-top: 120px;
-      padding: 40px 20px;
-      border-top: 1px solid #1f1f1f;
-      color: #8f8f8f;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    /* Scroll indicator */
+    /* ================= SCROLL ================= */
     .scroll-indicator {
       width: 20px;
       height: 36px;
@@ -108,84 +186,125 @@
       30% { opacity: 1; }
       100% { opacity: 0; top: 20px; }
     }
+
+    footer {
+      padding: 40px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="brand">
+      <div class="brand-badge">AW</div>
+      <span>ApexWealth</span>
+    </div>
+
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="toggleContact()">Contact</button>
+      <button class="nav-btn" onclick="toggleTheme()">☀︎ / ☾</button>
+    </div>
+
+    <div class="contact-menu" id="contactMenu">
+      <a href="mailto:realmetj11@email.com">Email</a>
+      <a href="https://github.com/apex-wealth" target="_blank">GitHub</a>
+      <a href="https://www.instagram.com/tj__teja__" target="_blank">Instagram</a>
+    </div>
+  </div>
+
   <!-- HERO -->
   <div class="wrap">
-    <div class="logo-wrap">
-      <img src="8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png" alt="ApexWealth Logo" class="logo">
-    </div>
-
+    <img src="8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png" class="logo" alt="ApexWealth Logo">
     <h1>APEXWEALTH</h1>
     <div class="line"></div>
+    <div class="tagline">Cars • Technology • Long-Term Wealth • Forex</div>
 
-    <div class="tagline">
-      Cars • Technology • Long-Term Wealth • Forex
-    </div>
-
-    <p style="color:#d6d6d6;">
+    <p style="color:var(--muted); margin-top:20px;">
       Disciplined thinking. Long-term execution. Compounding progress.
     </p>
 
     <div class="scroll-indicator"></div>
   </div>
 
-  <!-- INTRODUCTION -->
+  <!-- INTRO -->
   <section class="section">
     <h2>Introduction</h2>
     <div class="line"></div>
-    <p>.I don’t work for fun — I work for results.
-Bring the impossible. Execution comes at a price.
-.</p>
+    <p>
+      Results-driven execution. Complex problems accepted. Serious outcomes command commitment.
+    </p>
   </section>
 
   <!-- WHAT I DO -->
   <section class="section">
     <h2>What I Do</h2>
     <div class="line"></div>
-    <p>.I do anything that pays.Tech Projects , Offline Business , Trading , If it makes money, I’m on it. Average ideas don’t survive here.
-India.</p>
+    <p>
+      Build, invest, and execute across technology, trading, and scalable businesses.
+    </p>
   </section>
 
   <!-- INTERESTS -->
   <section class="section">
     <h2>Interests</h2>
     <div class="line"></div>
-    <p>Cars, technology, markets, and long-term compounding principles,Forex.</p>
+    <p>
+      Performance systems, markets, engineering discipline, and compounding advantages.
+    </p>
   </section>
 
   <!-- STARTUP SUPPORT -->
   <section class="section">
     <h2>Startup Support</h2>
     <div class="line"></div>
-    <p>Helping startups build strong foundations for sustainable growth.</p>
+    <p>
+      Supporting founders with clarity, structure, and long-term strategic thinking.
+    </p>
   </section>
 
   <!-- HELP -->
   <section class="section">
     <h2>How I Can Help</h2>
     <div class="line"></div>
-    <p>Clarity, structure, and guidance for early-stage execution.</p>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section">
-    <h2>Contact / Suggestions</h2>
-    <div class="line"></div>
-    <p>Open to ideas, collaborations, and serious long-term discussions.</p>
-    <p style="margin-top:24px;"><strong>realmetj11@email.com</strong></p>
+    <p>
+      Direction, systems design, and execution discipline for early-stage growth.
+    </p>
   </section>
 
   <!-- FOOTER -->
   <footer>
     ApexWealth is a personal initiative focused on long-term learning.<br>
-    No financial or investment advice is provided.<br><br>
+    No financial or investment advice provided.<br><br>
     © 2026 ApexWealth. All rights reserved.
   </footer>
 
+  <!-- SCRIPTS -->
+  <script>
+    function toggleContact() {
+      const menu = document.getElementById("contactMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+      localStorage.setItem("theme",
+        document.body.classList.contains("light") ? "light" : "dark"
+      );
+    }
+
+    (function () {
+      const saved = localStorage.getItem("theme");
+      if (saved === "light" ||
+          (!saved && window.matchMedia("(prefers-color-scheme: light)").matches)) {
+        document.body.classList.add("light");
+      }
+    })();
+  </script>
+
 </body>
 </html>
-      
