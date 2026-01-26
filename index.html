@@ -5,34 +5,7 @@
   <title>ApexWealth</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <style> 
-  .scroll-indicator {
-  width: 20px;
-  height: 36px;
-  border: 1.5px solid #666;
-  border-radius: 12px;
-  margin: 50px auto 0;
-  position: relative;
-}
-
-.scroll-indicator::after {
-  content: "";
-  width: 4px;
-  height: 6px;
-  background: #888;
-  border-radius: 2px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scroll 1.6s infinite;
-}
-
-@keyframes scroll {
-  0% { opacity: 0; top: 8px; }
-  30% { opacity: 1; }
-  100% { opacity: 0; top: 20px; }
-}
+  <style>
     body {
       margin: 0;
       background-color: #0b0b0b;
@@ -57,7 +30,8 @@
       width: 120px;
       max-width: 40vw;
       height: auto;
-      display: block;
+      filter: grayscale(100%) brightness(1.3) contrast(1.1);
+      opacity: 0.9;
     }
 
     h1 {
@@ -69,7 +43,7 @@
     .tagline {
       color: #bdbdbd;
       font-size: 18px;
-      margin-bottom: 40px;
+      margin-bottom: 24px;
     }
 
     .line {
@@ -104,13 +78,36 @@
       color: #8f8f8f;
       font-size: 14px;
       line-height: 1.6;
-    }.logo.silver {
-  filter: grayscale(100%) brightness(1.3) contrast(1.1);
-  opacity: 0.9;
-}<p style="color:#d6d6d6;">
-  Disciplined thinking. Long-term execution. Compounding progress over time.
-</p>
-<div class="scroll-indicator"></div>
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      width: 20px;
+      height: 36px;
+      border: 1.5px solid #666;
+      border-radius: 12px;
+      margin: 50px auto 0;
+      position: relative;
+    }
+
+    .scroll-indicator::after {
+      content: "";
+      width: 4px;
+      height: 6px;
+      background: #888;
+      border-radius: 2px;
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: scroll 1.6s infinite;
+    }
+
+    @keyframes scroll {
+      0% { opacity: 0; top: 8px; }
+      30% { opacity: 1; }
+      100% { opacity: 0; top: 20px; }
+    }
   </style>
 </head>
 
@@ -119,92 +116,73 @@
   <!-- HERO -->
   <div class="wrap">
     <div class="logo-wrap">
-      <img src="8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png"
-     alt="ApexWealth Logo"
-     class="logo silver">
+      <img src="8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png" alt="ApexWealth Logo" class="logo">
     </div>
 
     <h1>APEXWEALTH</h1>
     <div class="line"></div>
 
     <div class="tagline">
-      Cars • Technology • Long-Term Wealth •Forex
+      Cars • Technology • Long-Term Wealth • Forex
     </div>
 
     <p style="color:#d6d6d6;">
-      Disciplined thinking.Long term investing.All Startups I could Support.
+      Disciplined thinking. Long-term execution. Compounding progress.
     </p>
+
+    <div class="scroll-indicator"></div>
   </div>
 
   <!-- INTRODUCTION -->
   <section class="section">
     <h2>Introduction</h2>
     <div class="line"></div>
-    <p>
-      Founder focused on long-term value through discipline and systems.
-    </p>
+    <p>Founder focused on discipline, systems, and long-term value creation.</p>
   </section>
 
   <!-- WHAT I DO -->
   <section class="section">
     <h2>What I Do</h2>
     <div class="line"></div>
-    <p>
-      I analyse systems, decisions, and strategies for durable outcomes.
-    </p>
+    <p>Analyse systems, decisions, and strategies for durable outcomes.</p>
   </section>
 
   <!-- INTERESTS -->
   <section class="section">
     <h2>Interests</h2>
     <div class="line"></div>
-    <p>
-      Cars, technology, and compounding wealth through long-term thinking.
-    </p>
+    <p>Cars, technology, markets, and long-term compounding principles.</p>
   </section>
 
   <!-- STARTUP SUPPORT -->
   <section class="section">
     <h2>Startup Support</h2>
     <div class="line"></div>
-    <p>
-      Helping startups build strong financial, technical, and operational foundations.
-    </p>
+    <p>Helping startups build strong foundations for sustainable growth.</p>
   </section>
 
   <!-- HELP -->
   <section class="section">
     <h2>How I Can Help</h2>
     <div class="line"></div>
-    <p>
-      Strategic guidance, systems thinking, and clarity for early-stage growth.Many more
-    </p>
+    <p>Clarity, structure, and guidance for early-stage execution.</p>
   </section>
 
-  <!-- CONTACT / SUGGEST -->
+  <!-- CONTACT -->
   <section class="section">
     <h2>Contact / Suggestions</h2>
     <div class="line"></div>
-    <p>
-      Open to ideas, collaborations, and meaningful long-term discussions.
-    </p>
-    <p style="margin-top:24px;">
-      <strong>realmetj11@email.com</strong>
-    </p>
+    <p>Open to ideas, collaborations, and serious long-term discussions.</p>
+    <p style="margin-top:24px;"><strong>realmetj11@email.com</strong></p>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>
-      ApexWealth is a personal initiative for learning and long-term thinking.
-    </p>
-    <p>
-      No financial or investment advice is provided.
-    </p>
-    <p style="margin-top:20px;">
-      © 2026 ApexWealth. All rights reserved.
-    </p>
+    ApexWealth is a personal initiative focused on long-term learning.<br>
+    No financial or investment advice is provided.<br><br>
+    © 2026 ApexWealth. All rights reserved.
   </footer>
 
 </body>
 </html>
+      
