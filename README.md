@@ -1,2 +1,5 @@
 # apex-wealth.github.io
-Cars, technology, and long-term wealth. Built on discipline, learning, and compounding.
+ApexWealth identity, 
+
+I Build Solutions to Problems.
+Engineer • Builder • Problem Solver
