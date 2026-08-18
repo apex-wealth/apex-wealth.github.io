@@ -1,354 +1,4481 @@
+## Recommended repository structure
+
+```text
+/
+├── index.html
+├── variables.css
+├── tokens.json
+└── 8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png
+```
+
+Keep your existing `tokens.json` and `variables.css`.
+
+Replace your current `index.html` with this:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ApexWealth</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    ApexWealth — Engineering, Technology & Venture Lab
+  </title>
+
+  <meta
+    name="description"
+    content="ApexWealth is TJ's personal engineering and venture lab — solving technical problems, building practical prototypes, researching technology and collaborating with ambitious people."
+  />
+
+  <meta
+    name="keywords"
+    content="ApexWealth, TJ, engineering, robotics, automotive, automation, electronics, software, AI, startups, prototyping, product development"
+  />
+
+  <meta name="author" content="TJ — ApexWealth" />
+
+  <meta name="theme-color" content="#fefefc" />
+
+  <!-- Open Graph -->
+  <meta
+    property="og:title"
+    content="ApexWealth — I Build Solutions to Problems"
+  />
+
+  <meta
+    property="og:description"
+    content="Engineering, technology, prototypes, research and startup collaboration."
+  />
+
+  <meta property="og:type" content="website" />
+
+  <!-- Existing design-system variables -->
+  <link rel="stylesheet" href="./variables.css" />
+
+  <!-- Accessible web substitutes for the original proprietary typefaces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
-    /* ================= TRUST BADGE ================= */
-    .trust-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border-radius: 999px;
-      font-size: 14px;
-      color: #d0d0d0;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(6px);
-      margin: 24px auto 0;
-    }
+
+    /* =========================================================
+       APEXWEALTH
+       Editorial Engineering / Venture Lab
+
+       Built around supplied Legora-inspired design tokens.
+    ========================================================== */
 
     :root {
-      --bg: #0b0b0b;
-      --text: #ffffff;
-      --muted: #bdbdbd;
-      --card: rgba(18,18,18,0.75);
-      --border: #1f1f1f;
-      --glow: radial-gradient(circle at top, rgba(120,120,120,0.15), transparent 60%);
+
+      /* -------------------------------------------------------
+         Exact supplied token aliases
+      -------------------------------------------------------- */
+
+      --parchment: var(--color-parchment, #fefefc);
+      --ink: var(--color-ink, #000000);
+      --graphite: var(--color-graphite, #0a0a0a);
+      --smoke: var(--color-smoke, #6b6b6b);
+      --iron: var(--color-iron, #444444);
+
+      --sage:
+        var(--color-verdigris-wash, #ebf5ed);
+
+      --slate:
+        var(--color-slate-mist, #bdd4f0);
+
+      --pewter:
+        var(--color-pewter-haze, #98a7aa);
+
+
+      /* -------------------------------------------------------
+         Typography substitutes
+
+         Rhymes Display -> Cormorant Garamond Light
+         Suisse Intl    -> Inter
+      -------------------------------------------------------- */
+
+      --display-font:
+        "Cormorant Garamond",
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      --body-font:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+
+      /* -------------------------------------------------------
+         Structural additions
+      -------------------------------------------------------- */
+
+      --rule:
+        rgba(10, 10, 10, 0.20);
+
+      --soft-rule:
+        rgba(10, 10, 10, 0.10);
+
+      --dark-rule:
+        rgba(254, 254, 252, 0.20);
+
+      --ease-editorial:
+        cubic-bezier(0.22, 1, 0.36, 1);
+
+      --transition-fast:
+        220ms var(--ease-editorial);
+
+      --transition-medium:
+        650ms var(--ease-editorial);
+
+      --transition-slow:
+        1000ms var(--ease-editorial);
     }
 
-    body.light {
-      --bg: #f5f5f5;
-      --text: #0b0b0b;
-      --muted: #555;
-      --card: rgba(255,255,255,0.8);
-      --border: #ddd;
-      --glow: radial-gradient(circle at top, rgba(0,0,0,0.08), transparent 60%);
+
+    /* =========================================================
+       RESET
+    ========================================================== */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
-      text-align: center;
-      background-image: var(--glow);
+
+      background: var(--parchment);
+      color: var(--graphite);
+
+      font-family: var(--body-font);
+
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.4;
+
+      letter-spacing: -0.01em;
+
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+
+      overflow-x: hidden;
     }
 
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 20px;
-      backdrop-filter: blur(12px);
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
+    body.menu-open {
+      overflow: hidden;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
+    ::selection {
+      background: var(--sage);
+      color: var(--graphite);
     }
 
-    .brand-badge {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.08);
-      font-size: 14px;
-      font-weight: 700;
+    a {
+      color: inherit;
     }
 
-    .nav-actions {
-      display: flex;
-      gap: 10px;
-    }
-
-    .nav-btn {
-      padding: 8px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .contact-menu {
-      display: none;
-      position: absolute;
-      right: 20px;
-      top: 64px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 10px;
-      text-align: left;
-    }
-
-    .contact-menu a {
+    img {
       display: block;
-      padding: 8px 12px;
+      max-width: 100%;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+    }
+
+
+    /* =========================================================
+       ACCESSIBILITY
+    ========================================================== */
+
+    .skip-link {
+      position: fixed;
+
+      top: -60px;
+      left: 16px;
+
+      z-index: 9999;
+
+      background: var(--ink);
+      color: var(--parchment);
+
+      padding: 10px 18px;
+
+      border-radius:
+        var(--radius-buttons, 2px);
+
+      font-size: 13px;
+
       text-decoration: none;
-      color: var(--text);
-      font-size: 14px;
+
+      transition:
+        top var(--transition-fast);
     }
 
-    .contact-menu a:hover {
-      background: rgba(255,255,255,0.05);
-      border-radius: 8px;
+    .skip-link:focus {
+      top: 16px;
     }
 
-    .wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 48px 20px 56px;
-    }
 
-    .logo {
-      width: 160px;
-      max-width: 55vw;
-      filter: grayscale(100%) brightness(1.25);
-      opacity: 0.95;
-      margin-bottom: 22px;
-    }
+    /* =========================================================
+       REUSABLE LAYOUT
+    ========================================================== */
 
-    .title {
-      font-size: clamp(34px, 6.5vw, 54px);
-      letter-spacing: 0.28em;
-      font-weight: 700;
-      text-transform: uppercase;
-      line-height: 1.1;
-      margin: 14px 0 10px;
-    }
+    .container {
+      width:
+        min(
+          calc(100% - 64px),
+          var(--page-max-width, 1200px)
+        );
 
-    .tagline {
-      font-size: 17px;
-      color: var(--muted);
-      margin-top: 6px;
-    }
-
-    .hero-sub {
-      font-size: 18px;
-      color: var(--muted);
-      max-width: 520px;
-      margin: 18px auto 0;
-      line-height: 1.5;
-    }
-
-    .line {
-      width: 64px;
-      height: 2px;
-      background: var(--text);
-      margin: 28px auto;
-    }
-
-    .hero-btn {
-      display: inline-flex;
-      padding: 14px 22px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.08);
-      color: var(--text);
-      text-decoration: none;
-      border: 1px solid var(--border);
-      margin-top: 28px;
+      margin-inline: auto;
     }
 
     .section {
-      max-width: 700px;
-      margin: 80px auto;
-      padding: 0 20px;
+      padding-block:
+        var(--spacing-160, 160px);
     }
 
-    .section h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
+    .section-rule {
+      border-top:
+        1px solid var(--graphite);
     }
 
-    .section p {
-      font-size: 18px;
-      color: var(--muted);
-      line-height: 1.6;
+
+    /* =========================================================
+       EDITORIAL TYPOGRAPHY
+    ========================================================== */
+
+    .eyebrow {
+
+      font-size:
+        var(--text-caption, 11px);
+
+      line-height:
+        1;
+
+      letter-spacing:
+        0.12em;
+
+      text-transform:
+        uppercase;
+
+      color:
+        var(--smoke);
+
+      margin-bottom:
+        var(--spacing-16, 16px);
     }
 
-    .partner-box {
-      max-width: 520px;
-      margin: 48px auto 0;
-      padding: 18px 22px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(10px);
+    .display-title {
+
+      margin:
+        0;
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        clamp(
+          64px,
+          9vw,
+          118px
+        );
+
+      line-height:
+        0.88;
+
+      font-weight:
+        300;
+
+      letter-spacing:
+        -0.04em;
     }
 
-    .partner-box p {
-      font-size: 14px;
-      color: var(--muted);
+    .section-title {
+
+      margin:
+        0;
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        clamp(
+          46px,
+          5.8vw,
+          78px
+        );
+
+      line-height:
+        0.96;
+
+      font-weight:
+        300;
+
+      letter-spacing:
+        -0.035em;
     }
 
-    .partner-box a {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 10px 18px;
-      border-radius: 12px;
-      text-decoration: none;
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.06);
+    .body-large {
+
+      font-size:
+        clamp(
+          17px,
+          2vw,
+          20px
+        );
+
+      line-height:
+        1.55;
+
+      color:
+        var(--smoke);
     }
+
+
+    /* =========================================================
+       BUTTONS
+    ========================================================== */
+
+    .button {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        10px;
+
+      min-height:
+        42px;
+
+      padding:
+        10px 24px;
+
+      border-radius:
+        var(--radius-buttons, 2px);
+
+      font-size:
+        14px;
+
+      font-weight:
+        400;
+
+      line-height:
+        1;
+
+      letter-spacing:
+        -0.01em;
+
+      text-decoration:
+        none;
+
+      cursor:
+        pointer;
+
+      transition:
+        background var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .button-primary {
+      background:
+        var(--ink);
+
+      color:
+        var(--parchment);
+
+      border:
+        1px solid var(--ink);
+    }
+
+    .button-primary:hover {
+      background:
+        transparent;
+
+      color:
+        var(--ink);
+
+      transform:
+        translateY(-2px);
+    }
+
+    .button-outline {
+      background:
+        transparent;
+
+      border:
+        1px solid var(--graphite);
+
+      color:
+        var(--graphite);
+    }
+
+    .button-outline:hover {
+      background:
+        var(--graphite);
+
+      color:
+        var(--parchment);
+
+      transform:
+        translateY(-2px);
+    }
+
+    .button-light {
+
+      background:
+        var(--parchment);
+
+      color:
+        var(--graphite);
+
+      border:
+        1px solid var(--parchment);
+    }
+
+    .button-light:hover {
+
+      background:
+        transparent;
+
+      color:
+        var(--parchment);
+
+      transform:
+        translateY(-2px);
+    }
+
+    .button-dark-outline {
+
+      background:
+        transparent;
+
+      color:
+        var(--parchment);
+
+      border:
+        1px solid
+        rgba(
+          254,
+          254,
+          252,
+          0.45
+        );
+    }
+
+    .button-dark-outline:hover {
+
+      border-color:
+        var(--parchment);
+
+      transform:
+        translateY(-2px);
+    }
+
+    .button-arrow {
+      transition:
+        transform var(--transition-fast);
+    }
+
+    .button:hover
+    .button-arrow {
+
+      transform:
+        translateX(5px);
+    }
+
+
+    /* =========================================================
+       NAVIGATION
+    ========================================================== */
+
+    .navbar {
+
+      position:
+        fixed;
+
+      top:
+        0;
+
+      left:
+        0;
+
+      right:
+        0;
+
+      height:
+        72px;
+
+      z-index:
+        1000;
+
+      border-bottom:
+        1px solid
+        rgba(
+          254,
+          254,
+          252,
+          0.14
+        );
+
+      color:
+        var(--parchment);
+
+      transition:
+        background var(--transition-medium),
+        color var(--transition-medium),
+        border-color var(--transition-medium);
+    }
+
+    .navbar.scrolled {
+
+      background:
+        rgba(
+          254,
+          254,
+          252,
+          0.94
+        );
+
+      backdrop-filter:
+        blur(14px);
+
+      color:
+        var(--graphite);
+
+      border-bottom:
+        1px solid var(--soft-rule);
+    }
+
+    .nav-inner {
+
+      height:
+        100%;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr auto 1fr;
+
+      align-items:
+        center;
+
+      gap:
+        24px;
+    }
+
+    .brand {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      gap:
+        12px;
+
+      width:
+        fit-content;
+
+      color:
+        inherit;
+
+      text-decoration:
+        none;
+
+      font-size:
+        14px;
+
+      font-weight:
+        500;
+    }
+
+    .brand-mark {
+
+      width:
+        34px;
+
+      height:
+        34px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border:
+        1px solid currentColor;
+
+      border-radius:
+        var(--radius-sm, 2px);
+
+      font-size:
+        10px;
+
+      letter-spacing:
+        0.08em;
+    }
+
+    .nav-links {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        32px;
+    }
+
+    .nav-links a {
+
+      position:
+        relative;
+
+      color:
+        inherit;
+
+      text-decoration:
+        none;
+
+      font-size:
+        13px;
+
+      opacity:
+        0.72;
+
+      transition:
+        opacity var(--transition-fast);
+    }
+
+    .nav-links a::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      left:
+        0;
+
+      right:
+        100%;
+
+      bottom:
+        -6px;
+
+      height:
+        1px;
+
+      background:
+        currentColor;
+
+      transition:
+        right var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after {
+      right: 0;
+    }
+
+    .nav-actions {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        flex-end;
+
+      gap:
+        10px;
+    }
+
+    .nav-contact {
+
+      background:
+        var(--parchment);
+
+      color:
+        var(--graphite);
+
+      border:
+        1px solid
+        var(--parchment);
+
+      border-radius:
+        var(--radius-buttons, 2px);
+
+      padding:
+        9px 18px;
+
+      cursor:
+        pointer;
+
+      font-size:
+        13px;
+
+      transition:
+        background var(--transition-fast),
+        color var(--transition-fast);
+    }
+
+    .navbar.scrolled
+    .nav-contact {
+
+      background:
+        var(--graphite);
+
+      color:
+        var(--parchment);
+
+      border-color:
+        var(--graphite);
+    }
+
+    .nav-contact:hover {
+
+      background:
+        transparent;
+
+      color:
+        inherit;
+    }
+
+
+    /* =========================================================
+       CONTACT MENU
+    ========================================================== */
+
+    .contact-menu {
+
+      position:
+        fixed;
+
+      top:
+        82px;
+
+      right:
+        max(
+          32px,
+          calc(
+            (
+              100vw -
+              var(--page-max-width, 1200px)
+            ) / 2
+          )
+        );
+
+      z-index:
+        1001;
+
+      width:
+        230px;
+
+      padding:
+        8px;
+
+      background:
+        var(--parchment);
+
+      color:
+        var(--graphite);
+
+      border:
+        1px solid var(--graphite);
+
+      border-radius:
+        var(--radius-cards, 8px);
+
+      opacity:
+        0;
+
+      visibility:
+        hidden;
+
+      transform:
+        translateY(-8px);
+
+      transition:
+        opacity var(--transition-fast),
+        transform var(--transition-fast),
+        visibility var(--transition-fast);
+    }
+
+    .contact-menu.active {
+
+      opacity:
+        1;
+
+      visibility:
+        visible;
+
+      transform:
+        translateY(0);
+    }
+
+    .contact-menu a {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      padding:
+        12px;
+
+      border-radius:
+        var(--radius-sm, 2px);
+
+      font-size:
+        13px;
+
+      text-decoration:
+        none;
+
+      transition:
+        background var(--transition-fast);
+    }
+
+    .contact-menu a:hover {
+      background:
+        var(--sage);
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================== */
+
+    .hero {
+
+      position:
+        relative;
+
+      min-height:
+        100svh;
+
+      display:
+        flex;
+
+      align-items:
+        flex-end;
+
+      background:
+        var(--graphite);
+
+      color:
+        var(--parchment);
+
+      overflow:
+        hidden;
+    }
+
+    .hero::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      left:
+        0;
+
+      right:
+        0;
+
+      bottom:
+        0;
+
+      height:
+        1px;
+
+      background:
+        rgba(
+          254,
+          254,
+          252,
+          0.35
+        );
+    }
+
+    .hero-inner {
+
+      position:
+        relative;
+
+      z-index:
+        2;
+
+      padding-top:
+        170px;
+
+      padding-bottom:
+        82px;
+    }
+
+    .hero-kicker {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        14px;
+
+      color:
+        rgba(
+          254,
+          254,
+          252,
+          0.60
+        );
+
+      font-size:
+        11px;
+
+      letter-spacing:
+        0.12em;
+
+      text-transform:
+        uppercase;
+
+      margin-bottom:
+        28px;
+    }
+
+    .hero-kicker-line {
+
+      width:
+        36px;
+
+      height:
+        1px;
+
+      background:
+        rgba(
+          254,
+          254,
+          252,
+          0.45
+        );
+
+      transform-origin:
+        left;
+
+      animation:
+        heroLine
+        1.2s
+        0.25s
+        var(--ease-editorial)
+        both;
+    }
+
+    .hero-title {
+
+      max-width:
+        1000px;
+    }
+
+    .hero-title-line {
+
+      display:
+        block;
+
+      overflow:
+        hidden;
+    }
+
+    .hero-title-word {
+
+      display:
+        block;
+
+      transform:
+        translateY(115%);
+
+      opacity:
+        0;
+
+      animation:
+        heroWord
+        1.15s
+        var(--ease-editorial)
+        forwards;
+    }
+
+    .hero-title-line:nth-child(1)
+    .hero-title-word {
+      animation-delay: 0.15s;
+    }
+
+    .hero-title-line:nth-child(2)
+    .hero-title-word {
+      animation-delay: 0.27s;
+    }
+
+    .hero-title-line:nth-child(3)
+    .hero-title-word {
+      animation-delay: 0.39s;
+    }
+
+    .hero-bottom {
+
+      margin-top:
+        48px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        minmax(0, 620px)
+        auto;
+
+      gap:
+        64px;
+
+      align-items:
+        end;
+
+      opacity:
+        0;
+
+      transform:
+        translateY(18px);
+
+      animation:
+        heroFade
+        1s
+        0.75s
+        var(--ease-editorial)
+        forwards;
+    }
+
+    .hero-description {
+
+      margin:
+        0;
+
+      color:
+        rgba(
+          254,
+          254,
+          252,
+          0.68
+        );
+
+      font-size:
+        17px;
+
+      line-height:
+        1.6;
+    }
+
+    .hero-actions {
+
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        10px;
+
+      justify-content:
+        flex-end;
+    }
+
+    .hero-index {
+
+      position:
+        absolute;
+
+      right:
+        32px;
+
+      top:
+        50%;
+
+      transform:
+        translateY(-50%);
+
+      writing-mode:
+        vertical-rl;
+
+      color:
+        rgba(
+          254,
+          254,
+          252,
+          0.35
+        );
+
+      font-size:
+        10px;
+
+      letter-spacing:
+        0.16em;
+
+      text-transform:
+        uppercase;
+    }
+
+
+    /* =========================================================
+       INTRO STATEMENT
+    ========================================================== */
+
+    .statement {
+
+      text-align:
+        center;
+    }
+
+    .statement-inner {
+
+      max-width:
+        820px;
+
+      margin:
+        0 auto;
+    }
+
+    .statement .section-title {
+
+      max-width:
+        780px;
+
+      margin-inline:
+        auto;
+    }
+
+    .statement-copy {
+
+      max-width:
+        650px;
+
+      margin:
+        32px auto 0;
+    }
+
+
+    /* =========================================================
+       SECTION HEADER
+    ========================================================== */
+
+    .section-header {
+
+      padding-top:
+        22px;
+
+      margin-bottom:
+        var(--spacing-48, 48px);
+
+      border-top:
+        1px solid var(--graphite);
+
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+      justify-content:
+        space-between;
+
+      gap:
+        40px;
+    }
+
+    .section-header h2 {
+
+      margin:
+        0;
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        clamp(
+          40px,
+          5vw,
+          64px
+        );
+
+      line-height:
+        0.98;
+
+      font-weight:
+        300;
+
+      letter-spacing:
+        -0.03em;
+    }
+
+    .section-number {
+
+      color:
+        var(--smoke);
+
+      font-size:
+        11px;
+
+      letter-spacing:
+        0.1em;
+
+      white-space:
+        nowrap;
+    }
+
+
+    /* =========================================================
+       WHAT I DO
+    ========================================================== */
+
+    .capability-grid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap:
+        1px;
+
+      background:
+        var(--rule);
+
+      border:
+        1px solid var(--rule);
+    }
+
+    .capability {
+
+      position:
+        relative;
+
+      min-height:
+        370px;
+
+      padding:
+        var(--card-padding, 24px);
+
+      background:
+        var(--parchment);
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      justify-content:
+        space-between;
+
+      overflow:
+        hidden;
+
+      transition:
+        background var(--transition-medium);
+    }
+
+    .capability::before {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      background:
+        var(--sage);
+
+      transform:
+        translateY(101%);
+
+      transition:
+        transform
+        600ms
+        var(--ease-editorial);
+
+      z-index:
+        0;
+    }
+
+    .capability:nth-child(2)::before {
+      background:
+        var(--slate);
+    }
+
+    .capability:nth-child(3)::before {
+      background:
+        #efefec;
+    }
+
+    .capability:nth-child(4)::before {
+      background:
+        var(--sage);
+    }
+
+    .capability:hover::before {
+      transform:
+        translateY(0);
+    }
+
+    .capability > * {
+
+      position:
+        relative;
+
+      z-index:
+        1;
+    }
+
+    .capability-index {
+
+      color:
+        var(--smoke);
+
+      font-size:
+        11px;
+    }
+
+    .capability h3 {
+
+      margin:
+        0 0 16px;
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        32px;
+
+      line-height:
+        1;
+
+      font-weight:
+        300;
+
+      letter-spacing:
+        -0.025em;
+    }
+
+    .capability p {
+
+      margin:
+        0;
+
+      color:
+        var(--smoke);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.55;
+    }
+
+
+    /* =========================================================
+       AREAS
+    ========================================================== */
+
+    .areas {
+
+      padding-block:
+        var(--spacing-160, 160px);
+
+      background:
+        var(--sage);
+
+      border-top:
+        1px solid var(--graphite);
+
+      border-bottom:
+        1px solid var(--graphite);
+    }
+
+    .areas-layout {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        0.8fr 1.2fr;
+
+      gap:
+        100px;
+    }
+
+    .areas-intro p {
+
+      max-width:
+        430px;
+
+      margin:
+        28px 0 0;
+    }
+
+    .areas-list {
+
+      border-top:
+        1px solid var(--graphite);
+    }
+
+    .area-item {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      min-height:
+        76px;
+
+      border-bottom:
+        1px solid
+        rgba(
+          10,
+          10,
+          10,
+          0.30
+        );
+
+      text-decoration:
+        none;
+
+      overflow:
+        hidden;
+    }
+
+    .area-name {
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        clamp(
+          27px,
+          3vw,
+          38px
+        );
+
+      font-weight:
+        300;
+
+      letter-spacing:
+        -0.025em;
+
+      transition:
+        transform var(--transition-fast);
+    }
+
+    .area-index {
+
+      color:
+        var(--smoke);
+
+      font-size:
+        11px;
+
+      transition:
+        transform var(--transition-fast);
+    }
+
+    .area-item:hover
+    .area-name {
+
+      transform:
+        translateX(10px);
+    }
+
+    .area-item:hover
+    .area-index {
+
+      transform:
+        translateX(-10px);
+    }
+
+
+    /* =========================================================
+       SELECTED WORK
+    ========================================================== */
+
+    .projects {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap:
+        24px;
+    }
+
+    .project {
+
+      position:
+        relative;
+
+      min-height:
+        480px;
+
+      padding:
+        30px;
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      justify-content:
+        space-between;
+
+      overflow:
+        hidden;
+
+      border-radius:
+        var(--radius-cards, 8px);
+
+      background:
+        var(--slate);
+
+      transition:
+        transform
+        500ms
+        var(--ease-editorial);
+    }
+
+    .project:nth-child(2) {
+      background:
+        var(--sage);
+    }
+
+    .project:nth-child(3) {
+      background:
+        #ededeb;
+    }
+
+    .project:nth-child(4) {
+      background:
+        #d9e3e5;
+    }
+
+    .project:hover {
+
+      transform:
+        translateY(-6px);
+    }
+
+    .project-top {
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        flex-start;
+
+      gap:
+        20px;
+    }
+
+    .project-tag {
+
+      font-size:
+        11px;
+
+      color:
+        var(--smoke);
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.1em;
+    }
+
+    .project-number {
+
+      font-size:
+        11px;
+
+      color:
+        var(--smoke);
+    }
+
+    .project-content {
+
+      max-width:
+        550px;
+    }
+
+    .project h3 {
+
+      margin:
+        0 0 18px;
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        clamp(
+          36px,
+          4vw,
+          50px
+        );
+
+      line-height:
+        0.98;
+
+      font-weight:
+        300;
+
+      letter-spacing:
+        -0.035em;
+    }
+
+    .project p {
+
+      margin:
+        0;
+
+      max-width:
+        470px;
+
+      color:
+        var(--smoke);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.65;
+    }
+
+    .project-link {
+
+      position:
+        relative;
+
+      display:
+        inline-block;
+
+      width:
+        fit-content;
+
+      margin-top:
+        28px;
+
+      color:
+        var(--graphite);
+
+      font-size:
+        13px;
+
+      text-decoration:
+        none;
+    }
+
+    .project-link::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      left:
+        0;
+
+      right:
+        0;
+
+      bottom:
+        -4px;
+
+      height:
+        1px;
+
+      background:
+        currentColor;
+
+      transform-origin:
+        right;
+
+      transition:
+        transform var(--transition-fast);
+    }
+
+    .project-link:hover::after {
+
+      transform:
+        scaleX(0.35);
+    }
+
+
+    /* =========================================================
+       HOW I WORK
+    ========================================================== */
+
+    .process {
+
+      background:
+        var(--graphite);
+
+      color:
+        var(--parchment);
+
+      padding-block:
+        var(--spacing-160, 160px);
+    }
+
+    .process .section-header {
+
+      border-color:
+        rgba(
+          254,
+          254,
+          252,
+          0.35
+        );
+    }
+
+    .process .section-number {
+
+      color:
+        rgba(
+          254,
+          254,
+          252,
+          0.45
+        );
+    }
+
+    .process-grid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      border-top:
+        1px solid var(--dark-rule);
+    }
+
+    .process-step {
+
+      padding:
+        28px 26px 48px 0;
+
+      border-right:
+        1px solid var(--dark-rule);
+
+      margin-right:
+        26px;
+    }
+
+    .process-step:last-child {
+
+      border-right:
+        0;
+
+      margin-right:
+        0;
+    }
+
+    .process-step-index {
+
+      color:
+        rgba(
+          254,
+          254,
+          252,
+          0.40
+        );
+
+      font-size:
+        11px;
+
+      margin-bottom:
+        70px;
+    }
+
+    .process-step h3 {
+
+      margin:
+        0 0 16px;
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        29px;
+
+      line-height:
+        1;
+
+      font-weight:
+        300;
+    }
+
+    .process-step p {
+
+      margin:
+        0;
+
+      color:
+        rgba(
+          254,
+          254,
+          252,
+          0.55
+        );
+
+      font-size:
+        14px;
+
+      line-height:
+        1.6;
+    }
+
+
+    /* =========================================================
+       STARTUP COLLABORATION
+    ========================================================== */
+
+    .startup-layout {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1.1fr 0.9fr;
+
+      gap:
+        80px;
+
+      align-items:
+        stretch;
+    }
+
+    .startup-card {
+
+      min-height:
+        520px;
+
+      padding:
+        36px;
+
+      border-radius:
+        var(--radius-cards, 8px);
+
+      background:
+        var(--slate);
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      justify-content:
+        space-between;
+    }
+
+    .startup-card-label {
+
+      font-size:
+        11px;
+
+      letter-spacing:
+        0.10em;
+
+      text-transform:
+        uppercase;
+
+      color:
+        var(--smoke);
+    }
+
+    .startup-card h3 {
+
+      max-width:
+        540px;
+
+      margin:
+        0;
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        clamp(
+          44px,
+          5.5vw,
+          70px
+        );
+
+      line-height:
+        0.94;
+
+      font-weight:
+        300;
+
+      letter-spacing:
+        -0.04em;
+    }
+
+    .startup-copy {
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      justify-content:
+        center;
+    }
+
+    .startup-copy p {
+
+      color:
+        var(--smoke);
+
+      font-size:
+        16px;
+
+      line-height:
+        1.7;
+
+      margin:
+        0 0 22px;
+    }
+
+
+    /* =========================================================
+       ABOUT
+    ========================================================== */
+
+    .about {
+
+      border-top:
+        1px solid var(--graphite);
+    }
+
+    .about-layout {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        0.65fr
+        1.35fr;
+
+      gap:
+        90px;
+    }
+
+    .about-main {
+
+      max-width:
+        760px;
+    }
+
+    .about-main p {
+
+      color:
+        var(--smoke);
+
+      font-size:
+        17px;
+
+      line-height:
+        1.7;
+
+      margin:
+        32px 0 0;
+    }
+
+    .principle {
+
+      margin-top:
+        60px;
+
+      padding-top:
+        22px;
+
+      border-top:
+        1px solid var(--rule);
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        clamp(
+          30px,
+          4vw,
+          44px
+        );
+
+      line-height:
+        1.05;
+
+      font-weight:
+        300;
+
+      letter-spacing:
+        -0.03em;
+    }
+
+
+    /* =========================================================
+       MARKET NOTE
+    ========================================================== */
+
+    .market-note {
+
+      background:
+        var(--sage);
+
+      border-top:
+        1px solid var(--graphite);
+
+      border-bottom:
+        1px solid var(--graphite);
+    }
+
+    .market-layout {
+
+      padding-block:
+        56px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        0.45fr 1.55fr;
+
+      gap:
+        70px;
+    }
+
+    .market-label {
+
+      font-size:
+        11px;
+
+      letter-spacing:
+        0.10em;
+
+      text-transform:
+        uppercase;
+    }
+
+    .market-content {
+
+      max-width:
+        760px;
+    }
+
+    .market-content p {
+
+      margin:
+        0;
+
+      color:
+        var(--smoke);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.65;
+    }
+
+    .market-link {
+
+      display:
+        inline-block;
+
+      margin-top:
+        20px;
+
+      color:
+        var(--graphite);
+
+      font-size:
+        13px;
+
+      text-decoration:
+        underline;
+
+      text-underline-offset:
+        4px;
+    }
+
+
+    /* =========================================================
+       FINAL CTA
+    ========================================================== */
+
+    .final-cta {
+
+      min-height:
+        80vh;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      text-align:
+        center;
+    }
+
+    .final-inner {
+
+      max-width:
+        950px;
+
+      margin:
+        0 auto;
+    }
+
+    .final-title {
+
+      margin:
+        0;
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        clamp(
+          62px,
+          9vw,
+          110px
+        );
+
+      line-height:
+        0.88;
+
+      font-weight:
+        300;
+
+      letter-spacing:
+        -0.045em;
+    }
+
+    .final-copy {
+
+      max-width:
+        570px;
+
+      margin:
+        34px auto 0;
+
+      color:
+        var(--smoke);
+
+      font-size:
+        16px;
+
+      line-height:
+        1.6;
+    }
+
+    .final-action {
+
+      margin-top:
+        34px;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================== */
 
     footer {
-      padding: 40px 20px;
-      border-top: 1px solid var(--border);
-      font-size: 14px;
-      color: var(--muted);
+
+      border-top:
+        1px solid var(--graphite);
+
+      padding:
+        48px 0;
     }
+
+    .footer-layout {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr auto;
+
+      gap:
+        60px;
+    }
+
+    .footer-brand {
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        24px;
+
+      font-weight:
+        300;
+
+      margin-bottom:
+        14px;
+    }
+
+    .footer-copy {
+
+      max-width:
+        650px;
+
+      color:
+        var(--smoke);
+
+      font-size:
+        12px;
+
+      line-height:
+        1.65;
+    }
+
+    .footer-links {
+
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      align-items:
+        flex-start;
+
+      gap:
+        24px;
+    }
+
+    .footer-links a {
+
+      color:
+        var(--graphite);
+
+      font-size:
+        12px;
+
+      text-decoration:
+        none;
+    }
+
+    .footer-links a:hover {
+
+      text-decoration:
+        underline;
+
+      text-underline-offset:
+        4px;
+    }
+
+
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================== */
+
+    [data-reveal] {
+
+      opacity:
+        0;
+
+      transform:
+        translateY(34px);
+
+      transition:
+        opacity
+        900ms
+        var(--ease-editorial),
+
+        transform
+        900ms
+        var(--ease-editorial);
+    }
+
+    [data-reveal="left"] {
+
+      transform:
+        translateX(-36px);
+    }
+
+    [data-reveal="right"] {
+
+      transform:
+        translateX(36px);
+    }
+
+    [data-reveal].visible {
+
+      opacity:
+        1;
+
+      transform:
+        translate(0, 0);
+    }
+
+    [data-stagger] > * {
+
+      opacity:
+        0;
+
+      transform:
+        translateY(24px);
+
+      transition:
+        opacity
+        750ms
+        var(--ease-editorial),
+
+        transform
+        750ms
+        var(--ease-editorial);
+    }
+
+    [data-stagger].visible > * {
+
+      opacity:
+        1;
+
+      transform:
+        translateY(0);
+    }
+
+    [data-stagger].visible
+    > *:nth-child(1) {
+
+      transition-delay:
+        0ms;
+    }
+
+    [data-stagger].visible
+    > *:nth-child(2) {
+
+      transition-delay:
+        90ms;
+    }
+
+    [data-stagger].visible
+    > *:nth-child(3) {
+
+      transition-delay:
+        180ms;
+    }
+
+    [data-stagger].visible
+    > *:nth-child(4) {
+
+      transition-delay:
+        270ms;
+    }
+
+    [data-stagger].visible
+    > *:nth-child(5) {
+
+      transition-delay:
+        360ms;
+    }
+
+    [data-stagger].visible
+    > *:nth-child(6) {
+
+      transition-delay:
+        450ms;
+    }
+
+    [data-stagger].visible
+    > *:nth-child(7) {
+
+      transition-delay:
+        540ms;
+    }
+
+    [data-stagger].visible
+    > *:nth-child(8) {
+
+      transition-delay:
+        630ms;
+    }
+
+
+    /* =========================================================
+       ANIMATIONS
+    ========================================================== */
+
+    @keyframes heroWord {
+
+      to {
+        transform:
+          translateY(0);
+
+        opacity:
+          1;
+      }
+    }
+
+    @keyframes heroFade {
+
+      to {
+        opacity:
+          1;
+
+        transform:
+          translateY(0);
+      }
+    }
+
+    @keyframes heroLine {
+
+      from {
+        transform:
+          scaleX(0);
+      }
+
+      to {
+        transform:
+          scaleX(1);
+      }
+    }
+
+
+    /* =========================================================
+       TABLET
+    ========================================================== */
+
+    @media
+    (max-width: 960px) {
+
+      .container {
+
+        width:
+          min(
+            calc(100% - 44px),
+            var(--page-max-width, 1200px)
+          );
+      }
+
+      .nav-inner {
+
+        grid-template-columns:
+          1fr auto;
+      }
+
+      .nav-links {
+        display:
+          none;
+      }
+
+      .hero-bottom {
+
+        grid-template-columns:
+          1fr;
+
+        gap:
+          34px;
+      }
+
+      .hero-actions {
+
+        justify-content:
+          flex-start;
+      }
+
+      .hero-index {
+        display:
+          none;
+      }
+
+      .capability-grid {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .areas-layout {
+
+        grid-template-columns:
+          1fr;
+
+        gap:
+          60px;
+      }
+
+      .projects {
+
+        grid-template-columns:
+          1fr;
+      }
+
+      .project {
+
+        min-height:
+          420px;
+      }
+
+      .process-grid {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .process-step:nth-child(2) {
+
+        border-right:
+          none;
+
+        margin-right:
+          0;
+      }
+
+      .startup-layout {
+
+        grid-template-columns:
+          1fr;
+      }
+
+      .startup-card {
+
+        min-height:
+          430px;
+      }
+
+      .about-layout {
+
+        grid-template-columns:
+          1fr;
+
+        gap:
+          45px;
+      }
+
+      .market-layout {
+
+        grid-template-columns:
+          1fr;
+
+        gap:
+          28px;
+      }
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================== */
+
+    @media
+    (max-width: 620px) {
+
+      .container {
+
+        width:
+          calc(100% - 36px);
+      }
+
+      .navbar {
+        height:
+          64px;
+      }
+
+      .brand-mark {
+
+        width:
+          30px;
+
+        height:
+          30px;
+      }
+
+      .nav-contact {
+
+        padding:
+          8px 12px;
+      }
+
+      .contact-menu {
+
+        top:
+          72px;
+
+        left:
+          18px;
+
+        right:
+          18px;
+
+        width:
+          auto;
+      }
+
+      .section {
+
+        padding-block:
+          100px;
+      }
+
+      .hero {
+
+        min-height:
+          92svh;
+      }
+
+      .hero-inner {
+
+        padding-top:
+          125px;
+
+        padding-bottom:
+          54px;
+      }
+
+      .display-title {
+
+        font-size:
+          clamp(
+            57px,
+            17vw,
+            78px
+          );
+      }
+
+      .hero-description {
+
+        font-size:
+          15px;
+      }
+
+      .hero-actions {
+
+        flex-direction:
+          column;
+
+        align-items:
+          stretch;
+      }
+
+      .hero-actions .button {
+
+        width:
+          100%;
+      }
+
+      .section-header {
+
+        flex-direction:
+          column-reverse;
+
+        gap:
+          18px;
+      }
+
+      .capability-grid {
+
+        grid-template-columns:
+          1fr;
+      }
+
+      .capability {
+
+        min-height:
+          290px;
+      }
+
+      .areas {
+
+        padding-block:
+          100px;
+      }
+
+      .area-item {
+
+        min-height:
+          68px;
+      }
+
+      .project {
+
+        min-height:
+          360px;
+
+        padding:
+          24px;
+      }
+
+      .process {
+
+        padding-block:
+          100px;
+      }
+
+      .process-grid {
+
+        grid-template-columns:
+          1fr;
+      }
+
+      .process-step {
+
+        margin:
+          0;
+
+        padding:
+          30px 0;
+
+        border-right:
+          0;
+
+        border-bottom:
+          1px solid var(--dark-rule);
+      }
+
+      .process-step-index {
+
+        margin-bottom:
+          45px;
+      }
+
+      .startup-card {
+
+        min-height:
+          380px;
+
+        padding:
+          26px;
+      }
+
+      .final-cta {
+
+        min-height:
+          70vh;
+      }
+
+      .footer-layout {
+
+        grid-template-columns:
+          1fr;
+
+        gap:
+          34px;
+      }
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+
+       Important for accessibility.
+    ========================================================== */
+
+    @media
+    (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+
+        scroll-behavior:
+          auto !important;
+
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
+      }
+
+      [data-reveal],
+      [data-stagger] > * {
+
+        opacity:
+          1;
+
+        transform:
+          none;
+      }
+    }
+
   </style>
 </head>
 
+
 <body>
 
-<div class="navbar">
-  <div class="brand">
-    <div class="brand-badge">AW</div>
-    ApexWealth
-  </div>
-  <div class="nav-actions">
-    <button class="nav-btn" onclick="toggleContact()">Contact</button>
-    <button class="nav-btn" onclick="toggleTheme()">☀︎ / ☾</button>
-  </div>
-
-  <div class="contact-menu" id="contactMenu">
-    <a href="mailto:realmetj11@email.com">Email</a>
-    <a href="https://github.com/apex-wealth" target="_blank">GitHub</a>
-    <a href="https://www.instagram.com/tj__teja__" target="_blank">Instagram</a>
-  </div>
-</div>
-
-<div class="wrap">
-  <img src="8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png" class="logo" alt="ApexWealth Logo">
-
-  <h1 class="title">APEX&nbsp;WEALTH</h1>
-  <div class="line"></div>
-
-  <div class="tagline">
-    Cars • Technology • Long-Term Wealth • Forex • Escrow Services
-  </div>
-
-  <p class="hero-sub">
-    A focused platform built around engineering mindset, disciplined investing,
-    secure transactions, and long-term value creation.
-  </p>
-
-  <div class="trust-badge">
-    🔒 Education-First • Risk-Aware • Structured Approach
-  </div>
-
-  <a href="mailto:realmetj11@email.com" class="hero-btn">
-    Discuss Collaboration →
+  <a
+    href="#main"
+    class="skip-link"
+  >
+    Skip to content
   </a>
 
-  <div id="partner-slot"></div>
-</div>
 
-<section class="section">
-  <h2>Introduction</h2>
-  <div class="line"></div>
-  <p>
-    I’m TJ — focused on building systems, researching markets,
-    and executing with a long-term, risk-aware mindset.
-  </p>
-</section>
+  <!-- =======================================================
+       NAVIGATION
+  ======================================================== -->
 
-<section class="section">
-  <h2>Interests</h2>
-  <div class="line"></div>
-  <p>
-    Automotive engineering, high-performance vehicles,
-    electronics projects, and cinematic technical storytelling.
-  </p>
-</section>
+  <nav
+    class="navbar"
+    id="navbar"
+  >
 
-<section class="section">
-  <h2>Startup Support</h2>
-  <div class="line"></div>
-  <p>
-    Supporting early-stage founders with structured thinking,
-    execution clarity, and long-term strategic alignment.
-  </p>
-</section>
+    <div class="container nav-inner">
 
-<section class="section">
-  <h2>Escrow / Transaction Service</h2>
-  <div class="line"></div>
-  <p>
-    Providing structured escrow-style transaction support to improve trust,
-    protect funds during exchanges, and ensure clear execution between parties.
-  </p>
-</section>
+      <a
+        href="#top"
+        class="brand"
+        aria-label="ApexWealth home"
+      >
 
-<footer>
-  ApexWealth is a personal initiative focused on education,
-  research, and long-term learning.<br>
-  ApexWealth is not SEBI registered. All content is for educational purposes only.
-  No financial or investment advice is provided.<br><br>
-  © 2026 ApexWealth. All rights reserved.
-</footer>
+        <span class="brand-mark">
+          AW
+        </span>
 
-<script>
-  function toggleContact() {
-    const m = document.getElementById("contactMenu");
-    m.style.display = m.style.display === "block" ? "none" : "block";
-  }
+        <span>
+          ApexWealth
+        </span>
 
-  function toggleTheme() {
-    document.body.classList.toggle("light");
-    localStorage.setItem("theme",
-      document.body.classList.contains("light") ? "light" : "dark"
-    );
-  }
-
-  (function () {
-    const saved = localStorage.getItem("theme");
-    if (saved === "light" ||
-        (!saved && window.matchMedia("(prefers-color-scheme: light)").matches)) {
-      document.body.classList.add("light");
-    }
-  })();
-
-  document.getElementById("partner-slot").innerHTML = `
-    <div class="partner-box">
-      <p>
-        📈 Partner — Access global forex markets through Exness,
-        a third-party trading platform.
-      </p>
-      <a href="https://one.exnessonelink.com/a/itpt789kit?source=app&platform=mobile&pid=mobile_share" target="_blank">
-        Explore Exness Forex Platform →
       </a>
+
+
+      <div class="nav-links">
+
+        <a href="#capabilities">
+          What I Do
+        </a>
+
+        <a href="#areas">
+          Areas
+        </a>
+
+        <a href="#work">
+          Work
+        </a>
+
+        <a href="#process">
+          Process
+        </a>
+
+        <a href="#about">
+          About
+        </a>
+
+      </div>
+
+
+      <div class="nav-actions">
+
+        <button
+          class="nav-contact"
+          id="contactButton"
+          aria-expanded="false"
+          aria-controls="contactMenu"
+        >
+          Contact
+        </button>
+
+      </div>
+
     </div>
-  `;
-</script>
+
+  </nav>
+
+
+  <!-- =======================================================
+       CONTACT MENU
+  ======================================================== -->
+
+  <div
+    class="contact-menu"
+    id="contactMenu"
+    aria-hidden="true"
+  >
+
+    <a
+      href="mailto:realmetj11@email.com"
+    >
+      <span>Email</span>
+      <span>↗</span>
+    </a>
+
+    <a
+      href="https://github.com/apex-wealth"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>GitHub</span>
+      <span>↗</span>
+    </a>
+
+    <a
+      href="https://www.instagram.com/tj__teja__"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>Instagram</span>
+      <span>↗</span>
+    </a>
+
+  </div>
+
+
+  <main id="main">
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <header
+      class="hero"
+      id="top"
+    >
+
+      <div class="hero-index">
+        Engineering / Technology / Ventures / 2026
+      </div>
+
+
+      <div class="container hero-inner">
+
+        <div class="hero-kicker">
+
+          <span class="hero-kicker-line"></span>
+
+          ApexWealth /
+          Personal Engineering & Venture Lab
+
+        </div>
+
+
+        <h1 class="display-title hero-title">
+
+          <span class="hero-title-line">
+            <span class="hero-title-word">
+              I Build
+            </span>
+          </span>
+
+          <span class="hero-title-line">
+            <span class="hero-title-word">
+              Solutions to
+            </span>
+          </span>
+
+          <span class="hero-title-line">
+            <span class="hero-title-word">
+              Problems.
+            </span>
+          </span>
+
+        </h1>
+
+
+        <div class="hero-bottom">
+
+          <p class="hero-description">
+
+            Engineer, builder and problem solver.
+
+            I explore difficult technical and computational
+            problems, design practical solutions, build
+            prototypes and collaborate with people who want
+            to turn ambitious ideas into something real.
+
+          </p>
+
+
+          <div class="hero-actions">
+
+            <a
+              href="mailto:realmetj11@email.com"
+              class="button button-light"
+            >
+
+              Have a problem or idea?
+
+              <span class="button-arrow">
+                →
+              </span>
+
+            </a>
+
+
+            <a
+              href="#work"
+              class="button button-dark-outline"
+            >
+
+              Explore my work
+
+              <span>
+                ↓
+              </span>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         EDITORIAL STATEMENT
+    ====================================================== -->
+
+    <section
+      class="section statement"
+    >
+
+      <div
+        class="container statement-inner"
+        data-reveal
+      >
+
+        <div class="eyebrow">
+          01 / The philosophy
+        </div>
+
+
+        <h2 class="section-title">
+
+          Give me a problem.<br />
+          Let's figure it out.
+
+        </h2>
+
+
+        <p class="body-large statement-copy">
+
+          ApexWealth is my personal space for engineering,
+          experimentation, technology and venture ideas.
+
+          I enjoy understanding how things work, discovering
+          where they fail and finding practical ways to make
+          them better.
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         WHAT I DO
+    ====================================================== -->
+
+    <section
+      class="section"
+      id="capabilities"
+    >
+
+      <div class="container">
+
+        <div
+          class="section-header"
+          data-reveal
+        >
+
+          <h2>
+            What I Do
+          </h2>
+
+          <span class="section-number">
+            02 / Capabilities
+          </span>
+
+        </div>
+
+
+        <div
+          class="capability-grid"
+          data-stagger
+        >
+
+
+          <article class="capability">
+
+            <span class="capability-index">
+              01
+            </span>
+
+            <div>
+
+              <h3>
+                Solve Problems
+              </h3>
+
+              <p>
+
+                Break down technical, computational and
+                engineering challenges, understand the
+                constraints and develop practical approaches
+                to solving them.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="capability">
+
+            <span class="capability-index">
+              02
+            </span>
+
+            <div>
+
+              <h3>
+                Build & Prototype
+              </h3>
+
+              <p>
+
+                Turn concepts into working systems using
+                software, electronics, automation, robotics,
+                rapid prototyping and physical experimentation.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="capability">
+
+            <span class="capability-index">
+              03
+            </span>
+
+            <div>
+
+              <h3>
+                Startup Collaboration
+              </h3>
+
+              <p>
+
+                Work alongside founders and ambitious teams to
+                explore ideas, question assumptions, validate
+                concepts and improve technical execution.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="capability">
+
+            <span class="capability-index">
+              04
+            </span>
+
+            <div>
+
+              <h3>
+                Research & Experiment
+              </h3>
+
+              <p>
+
+                Continuously explore emerging technology,
+                automotive systems, AI, products, markets and
+                unconventional ideas through hands-on research.
+
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         AREAS I EXPLORE
+    ====================================================== -->
+
+    <section
+      class="areas"
+      id="areas"
+    >
+
+      <div class="container areas-layout">
+
+
+        <div
+          class="areas-intro"
+          data-reveal="left"
+        >
+
+          <div class="eyebrow">
+            03 / Exploration
+          </div>
+
+
+          <h2 class="section-title">
+
+            Areas I<br />
+            Explore
+
+          </h2>
+
+
+          <p class="body-large">
+
+            I don't believe useful problem solving must stay
+            inside one discipline.
+
+            These are the spaces where I currently spend time
+            learning, building, testing and experimenting.
+
+          </p>
+
+        </div>
+
+
+        <div
+          class="areas-list"
+          data-stagger
+        >
+
+          <div class="area-item">
+
+            <span class="area-name">
+              Automotive
+            </span>
+
+            <span class="area-index">
+              01
+            </span>
+
+          </div>
+
+
+          <div class="area-item">
+
+            <span class="area-name">
+              Robotics
+            </span>
+
+            <span class="area-index">
+              02
+            </span>
+
+          </div>
+
+
+          <div class="area-item">
+
+            <span class="area-name">
+              AI & Software
+            </span>
+
+            <span class="area-index">
+              03
+            </span>
+
+          </div>
+
+
+          <div class="area-item">
+
+            <span class="area-name">
+              Electronics
+            </span>
+
+            <span class="area-index">
+              04
+            </span>
+
+          </div>
+
+
+          <div class="area-item">
+
+            <span class="area-name">
+              Automation
+            </span>
+
+            <span class="area-index">
+              05
+            </span>
+
+          </div>
+
+
+          <div class="area-item">
+
+            <span class="area-name">
+              Product Development
+            </span>
+
+            <span class="area-index">
+              06
+            </span>
+
+          </div>
+
+
+          <div class="area-item">
+
+            <span class="area-name">
+              Startups
+            </span>
+
+            <span class="area-index">
+              07
+            </span>
+
+          </div>
+
+
+          <div class="area-item">
+
+            <span class="area-name">
+              Markets
+            </span>
+
+            <span class="area-index">
+              08
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SELECTED WORK
+    ====================================================== -->
+
+    <section
+      class="section"
+      id="work"
+    >
+
+      <div class="container">
+
+        <div
+          class="section-header"
+          data-reveal
+        >
+
+          <h2>
+            Selected Work
+          </h2>
+
+          <span class="section-number">
+            04 / Projects & experiments
+          </span>
+
+        </div>
+
+
+        <div
+          class="projects"
+          data-stagger
+        >
+
+
+          <article class="project">
+
+            <div class="project-top">
+
+              <span class="project-tag">
+                Robotics / Computer Vision
+              </span>
+
+              <span class="project-number">
+                01
+              </span>
+
+            </div>
+
+
+            <div class="project-content">
+
+              <h3>
+
+                Multi-Color
+                Object Following Robot
+
+              </h3>
+
+
+              <p>
+
+                A computer-vision based robotic system
+                combining OpenCV, Arduino, Python and Flask
+                with automated movement and object-handling
+                logic.
+
+              </p>
+
+
+              <span class="project-link">
+
+                Case study coming soon →
+
+              </span>
+
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div class="project-top">
+
+              <span class="project-tag">
+                Automotive / Engineering
+              </span>
+
+              <span class="project-number">
+                02
+              </span>
+
+            </div>
+
+
+            <div class="project-content">
+
+              <h3>
+
+                Automotive
+                Research & Analysis
+
+              </h3>
+
+
+              <p>
+
+                Exploring vehicle engineering, performance,
+                systems, diagnostics, restoration and the
+                technologies behind interesting machines.
+
+              </p>
+
+
+              <span class="project-link">
+
+                Research archive coming soon →
+
+              </span>
+
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div class="project-top">
+
+              <span class="project-tag">
+                Electronics / Hardware
+              </span>
+
+              <span class="project-number">
+                03
+              </span>
+
+            </div>
+
+
+            <div class="project-content">
+
+              <h3>
+
+                Hardware &
+                Electronics Experiments
+
+              </h3>
+
+
+              <p>
+
+                Building, modifying, testing and
+                reverse-engineering electronics, embedded
+                systems and practical hardware solutions.
+
+              </p>
+
+
+              <span class="project-link">
+
+                Experiments coming soon →
+
+              </span>
+
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div class="project-top">
+
+              <span class="project-tag">
+                Venture / Product
+              </span>
+
+              <span class="project-number">
+                04
+              </span>
+
+            </div>
+
+
+            <div class="project-content">
+
+              <h3>
+
+                Ideas Into
+                Practical Products
+
+              </h3>
+
+
+              <p>
+
+                Exploring overlooked problems that may become
+                useful products, technical solutions, services
+                or scalable businesses.
+
+              </p>
+
+
+              <a
+                href="mailto:realmetj11@email.com"
+                class="project-link"
+              >
+
+                Discuss an idea →
+
+              </a>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         HOW I WORK
+    ====================================================== -->
+
+    <section
+      class="process"
+      id="process"
+    >
+
+      <div class="container">
+
+        <div
+          class="section-header"
+          data-reveal
+        >
+
+          <h2>
+            How I Work
+          </h2>
+
+          <span class="section-number">
+            05 / Process
+          </span>
+
+        </div>
+
+
+        <div
+          class="process-grid"
+          data-stagger
+        >
+
+
+          <div class="process-step">
+
+            <div class="process-step-index">
+              01
+            </div>
+
+            <h3>
+              Understand
+            </h3>
+
+            <p>
+
+              Define the real problem, constraints, context and
+              what a useful outcome actually looks like.
+
+            </p>
+
+          </div>
+
+
+          <div class="process-step">
+
+            <div class="process-step-index">
+              02
+            </div>
+
+            <h3>
+              Research
+            </h3>
+
+            <p>
+
+              Study the system, existing approaches,
+              technologies, failure points and opportunities.
+
+            </p>
+
+          </div>
+
+
+          <div class="process-step">
+
+            <div class="process-step-index">
+              03
+            </div>
+
+            <h3>
+              Build
+            </h3>
+
+            <p>
+
+              Move quickly from theory to a practical
+              experiment, model, prototype or working system.
+
+            </p>
+
+          </div>
+
+
+          <div class="process-step">
+
+            <div class="process-step-index">
+              04
+            </div>
+
+            <h3>
+              Test & Improve
+            </h3>
+
+            <p>
+
+              Test assumptions, identify weaknesses and iterate
+              until the solution becomes simpler and stronger.
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STARTUP COLLABORATION
+    ====================================================== -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div
+          class="section-header"
+          data-reveal
+        >
+
+          <h2>
+            Startup Collaboration
+          </h2>
+
+          <span class="section-number">
+            06 / Build together
+          </span>
+
+        </div>
+
+
+        <div class="startup-layout">
+
+
+          <div
+            class="startup-card"
+            data-reveal="left"
+          >
+
+            <span class="startup-card-label">
+              Founders / Engineers / Builders
+            </span>
+
+
+            <h3>
+
+              Early ideas deserve
+              serious technical thinking.
+
+            </h3>
+
+          </div>
+
+
+          <div
+            class="startup-copy"
+            data-reveal="right"
+          >
+
+            <p>
+
+              I'm interested in working with early-stage
+              founders, engineers and small teams who are
+              trying to turn a difficult idea into something
+              practical.
+
+            </p>
+
+
+            <p>
+
+              That may involve technical research, product
+              thinking, prototyping, automation, engineering
+              problem-solving or simply challenging an idea
+              before significant time and money are spent.
+
+            </p>
+
+
+            <p>
+
+              I am especially interested in projects that sit
+              between software and the physical world.
+
+            </p>
+
+
+            <div>
+
+              <a
+                href="mailto:realmetj11@email.com"
+                class="button button-primary"
+              >
+
+                Discuss collaboration
+
+                <span class="button-arrow">
+                  →
+                </span>
+
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section
+      class="section about"
+      id="about"
+    >
+
+      <div class="container about-layout">
+
+
+        <div data-reveal="left">
+
+          <div class="eyebrow">
+            07 / About
+          </div>
+
+        </div>
+
+
+        <div
+          class="about-main"
+          data-reveal="right"
+        >
+
+          <h2 class="section-title">
+            I'm TJ.
+          </h2>
+
+
+          <p>
+
+            I'm an engineer who enjoys working across
+            disciplines rather than staying inside a single
+            box.
+
+            My interests span automotive engineering,
+            electronics, robotics, software, AI, automation,
+            product development and startups.
+
+          </p>
+
+
+          <p>
+
+            I enjoy testing things, reverse engineering them,
+            understanding why systems behave the way they do,
+            and learning whatever is necessary to solve the
+            problem in front of me.
+
+          </p>
+
+
+          <div class="principle">
+
+            I don't claim to have every answer.<br />
+            I enjoy finding them.
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MARKET RESEARCH / EXNESS DISCLOSURE
+    ====================================================== -->
+
+    <section class="market-note">
+
+      <div class="container market-layout">
+
+        <div
+          class="market-label"
+          data-reveal="left"
+        >
+          Market Research
+        </div>
+
+
+        <div
+          class="market-content"
+          data-reveal="right"
+        >
+
+          <p>
+
+            Markets are one of the areas I research personally.
+
+            ApexWealth may share educational or
+            research-oriented resources relating to global
+            markets.
+
+            Exness is a third-party trading platform.
+            ApexWealth does not provide investment advice,
+            portfolio management or regulated financial
+            services.
+
+          </p>
+
+
+          <a
+            class="market-link"
+            href="https://one.exnessonelink.com/a/itpt789kit?source=app&platform=mobile&pid=mobile_share"
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+          >
+
+            Explore Exness platform →
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CLOSING CTA
+    ====================================================== -->
+
+    <section class="final-cta">
+
+      <div
+        class="container final-inner"
+        data-reveal
+      >
+
+        <div class="eyebrow">
+          08 / Open to collaboration
+        </div>
+
+
+        <h2 class="final-title">
+
+          Have a problem<br />
+          or an idea?
+
+        </h2>
+
+
+        <p class="final-copy">
+
+          Technical challenge, startup concept, prototype,
+          automation idea, product experiment or an unusual
+          problem worth exploring — I'm interested in hearing
+          about it.
+
+        </p>
+
+
+        <div class="final-action">
+
+          <a
+            href="mailto:realmetj11@email.com"
+            class="button button-primary"
+          >
+
+            Let's talk
+
+            <span class="button-arrow">
+              →
+            </span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer>
+
+    <div class="container footer-layout">
+
+      <div>
+
+        <div class="footer-brand">
+          ApexWealth
+        </div>
+
+
+        <div class="footer-copy">
+
+          Personal engineering, technology, research and
+          venture lab by TJ.
+
+          <br /><br />
+
+          ApexWealth is a personal initiative focused on
+          education, experimentation, research and long-term
+          learning.
+
+          ApexWealth is not SEBI registered.
+
+          Nothing presented on this website constitutes
+          financial or investment advice.
+
+          <br /><br />
+
+          © 2026 ApexWealth.
+          All rights reserved.
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <a href="#top">
+          Top
+        </a>
+
+        <a href="#work">
+          Work
+        </a>
+
+        <a href="mailto:realmetj11@email.com">
+          Email
+        </a>
+
+        <a
+          href="https://github.com/apex-wealth"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+
+        <a
+          href="https://www.instagram.com/tj__teja__"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =======================================================
+       INTERACTIONS
+  ======================================================== -->
+
+  <script>
+
+    /* =======================================================
+       NAVBAR SCROLL STATE
+    ======================================================== */
+
+    const navbar =
+      document.getElementById("navbar");
+
+    function updateNavbar() {
+
+      if (window.scrollY > 40) {
+
+        navbar.classList.add(
+          "scrolled"
+        );
+
+      } else {
+
+        navbar.classList.remove(
+          "scrolled"
+        );
+
+      }
+
+    }
+
+    updateNavbar();
+
+    window.addEventListener(
+      "scroll",
+      updateNavbar,
+      { passive: true }
+    );
+
+
+    /* =======================================================
+       CONTACT MENU
+    ======================================================== */
+
+    const contactButton =
+      document.getElementById(
+        "contactButton"
+      );
+
+    const contactMenu =
+      document.getElementById(
+        "contactMenu"
+      );
+
+    function closeContactMenu() {
+
+      contactMenu.classList.remove(
+        "active"
+      );
+
+      contactMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      contactButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    }
+
+    function openContactMenu() {
+
+      contactMenu.classList.add(
+        "active"
+      );
+
+      contactMenu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      contactButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+    }
+
+    contactButton.addEventListener(
+      "click",
+      function (event) {
+
+        event.stopPropagation();
+
+        if (
+          contactMenu.classList.contains(
+            "active"
+          )
+        ) {
+
+          closeContactMenu();
+
+        } else {
+
+          openContactMenu();
+
+        }
+
+      }
+    );
+
+    document.addEventListener(
+      "click",
+      function (event) {
+
+        if (
+          !contactMenu.contains(
+            event.target
+          ) &&
+          !contactButton.contains(
+            event.target
+          )
+        ) {
+
+          closeContactMenu();
+
+        }
+
+      }
+    );
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          closeContactMenu();
+
+        }
+
+      }
+    );
+
+
+    /* =======================================================
+       INTERSECTION OBSERVER
+       Editorial scroll reveals
+    ======================================================== */
+
+    const observerOptions = {
+
+      threshold:
+        0.14,
+
+      rootMargin:
+        "0px 0px -60px 0px"
+
+    };
+
+
+    const revealObserver =
+      new IntersectionObserver(
+
+        function (entries) {
+
+          entries.forEach(
+            function (entry) {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                entry.target.classList.add(
+                  "visible"
+                );
+
+                revealObserver.unobserve(
+                  entry.target
+                );
+
+              }
+
+            }
+          );
+
+        },
+
+        observerOptions
+
+      );
+
+
+    document
+      .querySelectorAll(
+        "[data-reveal], [data-stagger]"
+      )
+      .forEach(
+        function (element) {
+
+          revealObserver.observe(
+            element
+          );
+
+        }
+      );
+
+
+    /* =======================================================
+       ACTIVE NAV SECTION
+
+       Subtle navigation feedback while scrolling.
+    ======================================================== */
+
+    const navLinks =
+      Array.from(
+        document.querySelectorAll(
+          ".nav-links a"
+        )
+      );
+
+
+    const trackedSections =
+      navLinks
+        .map(
+          function (link) {
+
+            const target =
+              link.getAttribute(
+                "href"
+              );
+
+            return document.querySelector(
+              target
+            );
+
+          }
+        )
+        .filter(Boolean);
+
+
+    const sectionObserver =
+      new IntersectionObserver(
+
+        function (entries) {
+
+          entries.forEach(
+            function (entry) {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                navLinks.forEach(
+                  function (link) {
+
+                    link.style.opacity =
+                      "0.55";
+
+                  }
+                );
+
+
+                const active =
+                  navLinks.find(
+                    function (link) {
+
+                      return (
+                        link.getAttribute(
+                          "href"
+                        ) ===
+                        "#" +
+                        entry.target.id
+                      );
+
+                    }
+                  );
+
+
+                if (active) {
+
+                  active.style.opacity =
+                    "1";
+
+                }
+
+              }
+
+            }
+          );
+
+        },
+
+        {
+          threshold:
+            0.3
+        }
+
+      );
+
+
+    trackedSections.forEach(
+      function (section) {
+
+        sectionObserver.observe(
+          section
+        );
+
+      }
+    );
+
+  </script>
 
 </body>
 </html>
+```
