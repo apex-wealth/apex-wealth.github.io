@@ -39,9 +39,6 @@
 
   <meta property="og:type" content="website" />
 
-  <!-- Existing design-system variables -->
-  <link rel="stylesheet" href="./variables.css" />
-
   <!-- Accessible web substitutes for the original proprietary typefaces -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
 
@@ -194,6 +191,16 @@
 
     button {
       font: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 4px;
+    }
+
+    .hero :focus-visible,
+    .process :focus-visible {
+      outline-color: var(--parchment);
     }
 
 
@@ -366,7 +373,7 @@
         10px;
 
       min-height:
-        42px;
+        44px;
 
       padding:
         10px 24px;
@@ -748,6 +755,9 @@
       font-size:
         13px;
 
+      min-height:
+        44px;
+
       transition:
         background var(--transition-fast),
         color var(--transition-fast);
@@ -773,6 +783,40 @@
 
       color:
         inherit;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid currentColor;
+      border-radius: var(--radius-buttons, 2px);
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      place-items: center;
+    }
+
+    .nav-toggle-lines {
+      display: grid;
+      gap: 5px;
+      width: 18px;
+    }
+
+    .nav-toggle-lines span {
+      display: block;
+      height: 1px;
+      background: currentColor;
+      transition: transform var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .navbar.nav-open .nav-toggle-lines span:first-child {
+      transform: translateY(3px) rotate(45deg);
+    }
+
+    .navbar.nav-open .nav-toggle-lines span:last-child {
+      transform: translateY(-3px) rotate(-45deg);
     }
 
 
@@ -860,6 +904,9 @@
 
       padding:
         12px;
+
+      min-height:
+        44px;
 
       border-radius:
         var(--radius-sm, 2px);
@@ -1767,6 +1814,15 @@
         scaleX(0.35);
     }
 
+    span.project-link {
+      color: var(--smoke);
+      cursor: default;
+    }
+
+    span.project-link::after {
+      display: none;
+    }
+
 
     /* =========================================================
        HOW I WORK
@@ -2170,6 +2226,18 @@
         4px;
     }
 
+    .market-content .market-disclosure {
+      margin-top: 18px;
+      max-width: 68ch;
+      color: var(--iron);
+      font-size: 12px;
+    }
+
+    .market-disclosure strong {
+      color: var(--graphite);
+      font-weight: 500;
+    }
+
 
     /* =========================================================
        FINAL CTA
@@ -2345,7 +2413,7 @@
        SCROLL REVEAL
     ========================================================== */
 
-    [data-reveal] {
+    .motion-ready [data-reveal] {
 
       opacity:
         0;
@@ -2363,19 +2431,19 @@
         var(--ease-editorial);
     }
 
-    [data-reveal="left"] {
+    .motion-ready [data-reveal="left"] {
 
       transform:
         translateX(-36px);
     }
 
-    [data-reveal="right"] {
+    .motion-ready [data-reveal="right"] {
 
       transform:
         translateX(36px);
     }
 
-    [data-reveal].visible {
+    .motion-ready [data-reveal].visible {
 
       opacity:
         1;
@@ -2384,7 +2452,7 @@
         translate(0, 0);
     }
 
-    [data-stagger] > * {
+    .motion-ready [data-stagger] > * {
 
       opacity:
         0;
@@ -2402,7 +2470,7 @@
         var(--ease-editorial);
     }
 
-    [data-stagger].visible > * {
+    .motion-ready [data-stagger].visible > * {
 
       opacity:
         1;
@@ -2411,7 +2479,7 @@
         translateY(0);
     }
 
-    [data-stagger].visible
+    .motion-ready [data-stagger].visible
     > *:nth-child(1) {
 
       transition-delay:
@@ -2422,49 +2490,49 @@
     > *:nth-child(2) {
 
       transition-delay:
-        90ms;
+        55ms;
     }
 
-    [data-stagger].visible
+    .motion-ready [data-stagger].visible
     > *:nth-child(3) {
 
       transition-delay:
-        180ms;
+        110ms;
     }
 
-    [data-stagger].visible
+    .motion-ready [data-stagger].visible
     > *:nth-child(4) {
 
       transition-delay:
-        270ms;
+        165ms;
     }
 
-    [data-stagger].visible
+    .motion-ready [data-stagger].visible
     > *:nth-child(5) {
 
       transition-delay:
-        360ms;
+        220ms;
     }
 
-    [data-stagger].visible
+    .motion-ready [data-stagger].visible
     > *:nth-child(6) {
 
       transition-delay:
-        450ms;
+        220ms;
     }
 
-    [data-stagger].visible
+    .motion-ready [data-stagger].visible
     > *:nth-child(7) {
 
       transition-delay:
-        540ms;
+        220ms;
     }
 
-    [data-stagger].visible
+    .motion-ready [data-stagger].visible
     > *:nth-child(8) {
 
       transition-delay:
-        630ms;
+        220ms;
     }
 
 
@@ -2531,8 +2599,46 @@
       }
 
       .nav-links {
-        display:
-          none;
+        position: fixed;
+        inset: 72px 22px auto;
+        display: grid;
+        gap: 0;
+        padding: 10px;
+        background: var(--parchment);
+        color: var(--graphite);
+        border: 1px solid var(--graphite);
+        border-radius: var(--radius-cards, 8px);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+      }
+
+      .navbar.nav-open .nav-links {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        border-bottom: 1px solid var(--soft-rule);
+        opacity: 1;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: grid;
       }
 
       .hero-bottom {
@@ -2660,6 +2766,10 @@
 
         padding:
           8px 12px;
+      }
+
+      .nav-links {
+        inset: 64px 18px auto;
       }
 
       .contact-menu {
@@ -2839,21 +2949,16 @@
     @media
     (prefers-reduced-motion: reduce) {
 
-      *,
-      *::before,
-      *::after {
+      html {
+        scroll-behavior: auto;
+      }
 
-        scroll-behavior:
-          auto !important;
-
-        animation-duration:
-          0.01ms !important;
-
-        animation-iteration-count:
-          1 !important;
-
-        transition-duration:
-          0.01ms !important;
+      .hero-title-word,
+      .hero-bottom,
+      .hero-kicker-line {
+        animation: none;
+        opacity: 1;
+        transform: none;
       }
 
       [data-reveal],
@@ -2864,6 +2969,14 @@
 
         transform:
           none;
+      }
+
+      .button,
+      .button-arrow,
+      .nav-links,
+      .contact-menu,
+      .nav-toggle-lines span {
+        transition-duration: 120ms;
       }
     }
 
@@ -2888,6 +3001,7 @@
   <nav
     class="navbar"
     id="navbar"
+    aria-label="Primary navigation"
   >
 
     <div class="container nav-inner">
@@ -2909,7 +3023,7 @@
       </a>
 
 
-      <div class="nav-links">
+      <div class="nav-links" id="navLinks">
 
         <a href="#capabilities">
           What I Do
@@ -2937,8 +3051,24 @@
       <div class="nav-actions">
 
         <button
+          class="nav-toggle"
+          id="navToggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="navLinks"
+          aria-label="Open section navigation"
+        >
+          <span class="nav-toggle-lines" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <button
           class="nav-contact"
           id="contactButton"
+          type="button"
+          aria-haspopup="true"
           aria-expanded="false"
           aria-controls="contactMenu"
         >
@@ -3504,7 +3634,7 @@
 
               <span class="project-link">
 
-                Case study coming soon →
+                Case study coming soon
 
               </span>
 
@@ -3549,7 +3679,7 @@
 
               <span class="project-link">
 
-                Research archive coming soon →
+                Research archive coming soon
 
               </span>
 
@@ -3594,7 +3724,7 @@
 
               <span class="project-link">
 
-                Experiments coming soon →
+                Experiments coming soon
 
               </span>
 
@@ -3996,9 +4126,19 @@
             rel="noopener noreferrer sponsored"
           >
 
-            Explore Exness platform →
+            Visit Exness — sponsored link →
 
           </a>
+
+
+          <p class="market-disclosure">
+
+            <strong>Sponsored referral disclosure:</strong>
+            This link leads to Exness, a third-party platform.
+            Before proceeding, review Exness’s own terms,
+            eligibility requirements and risk disclosures.
+
+          </p>
 
         </div>
 
@@ -4150,12 +4290,52 @@
 
   <script>
 
+    document.documentElement.classList.add(
+      "motion-ready"
+    );
+
     /* =======================================================
        NAVBAR SCROLL STATE
     ======================================================== */
 
     const navbar =
       document.getElementById("navbar");
+
+    const navToggle =
+      document.getElementById("navToggle");
+
+    const navLinksPanel =
+      document.getElementById("navLinks");
+
+    function closeSectionNavigation() {
+
+      navbar.classList.remove("nav-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Open section navigation");
+    }
+
+    navToggle.addEventListener("click", function () {
+
+      const willOpen =
+        !navbar.classList.contains("nav-open");
+
+      navbar.classList.toggle("nav-open", willOpen);
+      navToggle.setAttribute("aria-expanded", String(willOpen));
+      navToggle.setAttribute(
+        "aria-label",
+        willOpen ? "Close section navigation" : "Open section navigation"
+      );
+
+      if (willOpen) {
+        closeContactMenu();
+      }
+    });
+
+    navLinksPanel.addEventListener("click", function (event) {
+      if (event.target.closest("a")) {
+        closeSectionNavigation();
+      }
+    });
 
     function updateNavbar() {
 
@@ -4218,6 +4398,8 @@
 
     function openContactMenu() {
 
+      closeSectionNavigation();
+
       contactMenu.classList.add(
         "active"
       );
@@ -4274,8 +4456,18 @@
 
         }
 
+        if (!navbar.contains(event.target)) {
+          closeSectionNavigation();
+        }
+
       }
     );
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 960) {
+        closeSectionNavigation();
+      }
+    });
 
     document.addEventListener(
       "keydown",
@@ -4285,7 +4477,20 @@
           event.key === "Escape"
         ) {
 
+          const contactWasOpen =
+            contactMenu.classList.contains("active");
+
+          const navigationWasOpen =
+            navbar.classList.contains("nav-open");
+
           closeContactMenu();
+          closeSectionNavigation();
+
+          if (contactWasOpen) {
+            contactButton.focus();
+          } else if (navigationWasOpen) {
+            navToggle.focus();
+          }
 
         }
 
@@ -4407,6 +4612,10 @@
                     link.style.opacity =
                       "0.55";
 
+                    link.removeAttribute(
+                      "aria-current"
+                    );
+
                   }
                 );
 
@@ -4431,6 +4640,11 @@
 
                   active.style.opacity =
                     "1";
+
+                  active.setAttribute(
+                    "aria-current",
+                    "location"
+                  );
 
                 }
 
@@ -4463,4 +4677,3 @@
 
 </body>
 </html>
-```
