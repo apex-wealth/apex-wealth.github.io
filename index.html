@@ -1,3 +1,18 @@
+## Recommended repository structure
+
+```text
+/
+├── index.html
+├── variables.css
+├── tokens.json
+└── 8CA0EF69-9A43-4C2D-91F0-6AE8DE250004.png
+```
+
+Keep your existing `tokens.json` and `variables.css`.
+
+Replace your current `index.html` with this:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +53,9 @@
   />
 
   <meta property="og:type" content="website" />
+
+  <!-- Existing design-system variables -->
+  <link rel="stylesheet" href="./variables.css" />
 
   <!-- Accessible web substitutes for the original proprietary typefaces -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -191,16 +209,6 @@
 
     button {
       font: inherit;
-    }
-
-    :focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 4px;
-    }
-
-    .hero :focus-visible,
-    .process :focus-visible {
-      outline-color: var(--parchment);
     }
 
 
@@ -373,7 +381,7 @@
         10px;
 
       min-height:
-        44px;
+        42px;
 
       padding:
         10px 24px;
@@ -755,9 +763,6 @@
       font-size:
         13px;
 
-      min-height:
-        44px;
-
       transition:
         background var(--transition-fast),
         color var(--transition-fast);
@@ -783,40 +788,6 @@
 
       color:
         inherit;
-    }
-
-    .nav-toggle {
-      display: none;
-      width: 44px;
-      height: 44px;
-      padding: 0;
-      border: 1px solid currentColor;
-      border-radius: var(--radius-buttons, 2px);
-      background: transparent;
-      color: inherit;
-      cursor: pointer;
-      place-items: center;
-    }
-
-    .nav-toggle-lines {
-      display: grid;
-      gap: 5px;
-      width: 18px;
-    }
-
-    .nav-toggle-lines span {
-      display: block;
-      height: 1px;
-      background: currentColor;
-      transition: transform var(--transition-fast), opacity var(--transition-fast);
-    }
-
-    .navbar.nav-open .nav-toggle-lines span:first-child {
-      transform: translateY(3px) rotate(45deg);
-    }
-
-    .navbar.nav-open .nav-toggle-lines span:last-child {
-      transform: translateY(-3px) rotate(-45deg);
     }
 
 
@@ -905,9 +876,6 @@
       padding:
         12px;
 
-      min-height:
-        44px;
-
       border-radius:
         var(--radius-sm, 2px);
 
@@ -953,6 +921,254 @@
 
       overflow:
         hidden;
+
+      isolation:
+        isolate;
+    }
+
+    .hero-scene {
+
+      position:
+        absolute;
+
+      right:
+        clamp(22px, 6vw, 96px);
+
+      top:
+        50%;
+
+      width:
+        min(42vw, 560px);
+
+      aspect-ratio:
+        1;
+
+      transform:
+        translateY(-47%);
+
+      perspective:
+        1100px;
+
+      pointer-events:
+        none;
+
+      z-index:
+        1;
+
+      opacity:
+        0.94;
+    }
+
+    .hero-scene::before {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      left:
+        50%;
+
+      top:
+        50%;
+
+      width:
+        76%;
+
+      aspect-ratio:
+        1;
+
+      transform:
+        translate(-50%, -50%);
+
+      border:
+        1px solid rgba(254, 254, 252, 0.09);
+
+      border-radius:
+        50%;
+    }
+
+    .gyro {
+
+      position:
+        absolute;
+
+      inset:
+        12%;
+
+      transform-style:
+        preserve-3d;
+
+      transform:
+        rotateX(var(--gyro-x, -12deg))
+        rotateY(var(--gyro-y, 20deg));
+
+      transition:
+        transform 600ms var(--ease-editorial);
+    }
+
+    .gyro-ring {
+
+      position:
+        absolute;
+
+      left:
+        50%;
+
+      top:
+        50%;
+
+      width:
+        72%;
+
+      aspect-ratio:
+        1;
+
+      border:
+        1px solid rgba(254, 254, 252, 0.32);
+
+      border-radius:
+        50%;
+
+      transform-style:
+        preserve-3d;
+    }
+
+    .gyro-ring.r1 {
+      transform: translate(-50%, -50%) rotateX(68deg) rotateZ(10deg);
+      animation: gyroSpinOne 16s linear infinite;
+    }
+
+    .gyro-ring.r2 {
+      transform: translate(-50%, -50%) rotateY(72deg) rotateZ(-18deg);
+      animation: gyroSpinTwo 20s linear infinite reverse;
+    }
+
+    .gyro-ring.r3 {
+      width: 52%;
+      transform: translate(-50%, -50%) rotateX(44deg) rotateY(34deg);
+      border-color: rgba(189, 212, 240, 0.42);
+      animation: gyroSpinThree 13s linear infinite;
+    }
+
+    .gyro-core {
+
+      position:
+        absolute;
+
+      left:
+        50%;
+
+      top:
+        50%;
+
+      width:
+        84px;
+
+      height:
+        84px;
+
+      transform:
+        translate(-50%, -50%) rotateX(58deg) rotateZ(45deg);
+
+      border:
+        1px solid rgba(254, 254, 252, 0.58);
+
+      background:
+        rgba(254, 254, 252, 0.025);
+
+      backdrop-filter:
+        blur(4px);
+
+      box-shadow:
+        inset 0 0 0 1px rgba(254, 254, 252, 0.04);
+
+      animation:
+        coreFloat 7s var(--ease-editorial) infinite alternate;
+    }
+
+    .gyro-core::before,
+    .gyro-core::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      inset:
+        13px;
+
+      border:
+        1px solid rgba(235, 245, 237, 0.26);
+    }
+
+    .gyro-core::after {
+      inset: 26px;
+      background: var(--parchment);
+      opacity: 0.78;
+    }
+
+    .scene-axis {
+
+      position:
+        absolute;
+
+      left:
+        50%;
+
+      top:
+        50%;
+
+      width:
+        86%;
+
+      height:
+        1px;
+
+      background:
+        linear-gradient(
+          to right,
+          transparent,
+          rgba(254,254,252,.20),
+          transparent
+        );
+
+      transform-origin:
+        center;
+    }
+
+    .scene-axis.a1 {
+      transform: translate(-50%, -50%) rotate(23deg);
+    }
+
+    .scene-axis.a2 {
+      transform: translate(-50%, -50%) rotate(-31deg);
+    }
+
+    .scene-note {
+
+      position:
+        absolute;
+
+      right:
+        2%;
+
+      bottom:
+        7%;
+
+      color:
+        rgba(254, 254, 252, 0.42);
+
+      font-size:
+        9px;
+
+      letter-spacing:
+        0.16em;
+
+      text-transform:
+        uppercase;
     }
 
     .hero::after {
@@ -1061,7 +1277,7 @@
     .hero-title {
 
       max-width:
-        1000px;
+        760px;
     }
 
     .hero-title-line {
@@ -1156,6 +1372,60 @@
 
       line-height:
         1.6;
+
+      max-width:
+        610px;
+    }
+
+    /* =========================================================
+       OBJECTIVE BAND
+    ========================================================== */
+
+    .objective-band {
+      border-bottom: 1px solid var(--graphite);
+      background: var(--parchment);
+    }
+
+    .objective-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 72px;
+      padding-block: 54px;
+      align-items: start;
+    }
+
+    .objective-statement {
+      margin: 0;
+      max-width: 780px;
+      font-family: var(--display-font);
+      font-size: clamp(31px, 3.7vw, 50px);
+      line-height: 1.02;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+    }
+
+    .objective-list {
+      border-top: 1px solid var(--graphite);
+    }
+
+    .objective-item {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--soft-rule);
+    }
+
+    .objective-item span {
+      color: var(--smoke);
+      font-size: 11px;
+    }
+
+    .objective-item p {
+      margin: 0;
+      color: var(--iron);
+      font-size: 13px;
+      line-height: 1.45;
     }
 
     .hero-actions {
@@ -1643,6 +1913,15 @@
         transform
         500ms
         var(--ease-editorial);
+
+      transform-style:
+        preserve-3d;
+
+      transform:
+        perspective(1000px)
+        rotateX(var(--project-rx, 0deg))
+        rotateY(var(--project-ry, 0deg))
+        translateY(var(--project-y, 0px));
     }
 
     .project:nth-child(2) {
@@ -1661,9 +1940,7 @@
     }
 
     .project:hover {
-
-      transform:
-        translateY(-6px);
+      --project-y: -6px;
     }
 
     .project-top {
@@ -1812,15 +2089,6 @@
 
       transform:
         scaleX(0.35);
-    }
-
-    span.project-link {
-      color: var(--smoke);
-      cursor: default;
-    }
-
-    span.project-link::after {
-      display: none;
     }
 
 
@@ -2226,18 +2494,6 @@
         4px;
     }
 
-    .market-content .market-disclosure {
-      margin-top: 18px;
-      max-width: 68ch;
-      color: var(--iron);
-      font-size: 12px;
-    }
-
-    .market-disclosure strong {
-      color: var(--graphite);
-      font-weight: 500;
-    }
-
 
     /* =========================================================
        FINAL CTA
@@ -2413,7 +2669,7 @@
        SCROLL REVEAL
     ========================================================== */
 
-    .motion-ready [data-reveal] {
+    [data-reveal] {
 
       opacity:
         0;
@@ -2431,19 +2687,19 @@
         var(--ease-editorial);
     }
 
-    .motion-ready [data-reveal="left"] {
+    [data-reveal="left"] {
 
       transform:
         translateX(-36px);
     }
 
-    .motion-ready [data-reveal="right"] {
+    [data-reveal="right"] {
 
       transform:
         translateX(36px);
     }
 
-    .motion-ready [data-reveal].visible {
+    [data-reveal].visible {
 
       opacity:
         1;
@@ -2452,7 +2708,7 @@
         translate(0, 0);
     }
 
-    .motion-ready [data-stagger] > * {
+    [data-stagger] > * {
 
       opacity:
         0;
@@ -2470,7 +2726,7 @@
         var(--ease-editorial);
     }
 
-    .motion-ready [data-stagger].visible > * {
+    [data-stagger].visible > * {
 
       opacity:
         1;
@@ -2479,7 +2735,7 @@
         translateY(0);
     }
 
-    .motion-ready [data-stagger].visible
+    [data-stagger].visible
     > *:nth-child(1) {
 
       transition-delay:
@@ -2490,49 +2746,49 @@
     > *:nth-child(2) {
 
       transition-delay:
-        55ms;
+        90ms;
     }
 
-    .motion-ready [data-stagger].visible
+    [data-stagger].visible
     > *:nth-child(3) {
 
       transition-delay:
-        110ms;
+        180ms;
     }
 
-    .motion-ready [data-stagger].visible
+    [data-stagger].visible
     > *:nth-child(4) {
 
       transition-delay:
-        165ms;
+        270ms;
     }
 
-    .motion-ready [data-stagger].visible
+    [data-stagger].visible
     > *:nth-child(5) {
 
       transition-delay:
-        220ms;
+        360ms;
     }
 
-    .motion-ready [data-stagger].visible
+    [data-stagger].visible
     > *:nth-child(6) {
 
       transition-delay:
-        220ms;
+        450ms;
     }
 
-    .motion-ready [data-stagger].visible
+    [data-stagger].visible
     > *:nth-child(7) {
 
       transition-delay:
-        220ms;
+        540ms;
     }
 
-    .motion-ready [data-stagger].visible
+    [data-stagger].visible
     > *:nth-child(8) {
 
       transition-delay:
-        220ms;
+        630ms;
     }
 
 
@@ -2575,6 +2831,26 @@
       }
     }
 
+    @keyframes gyroSpinOne {
+      from { transform: translate(-50%, -50%) rotateX(68deg) rotateZ(10deg); }
+      to   { transform: translate(-50%, -50%) rotateX(68deg) rotateZ(370deg); }
+    }
+
+    @keyframes gyroSpinTwo {
+      from { transform: translate(-50%, -50%) rotateY(72deg) rotateZ(-18deg); }
+      to   { transform: translate(-50%, -50%) rotateY(72deg) rotateZ(342deg); }
+    }
+
+    @keyframes gyroSpinThree {
+      from { transform: translate(-50%, -50%) rotateX(44deg) rotateY(34deg) rotateZ(0deg); }
+      to   { transform: translate(-50%, -50%) rotateX(44deg) rotateY(34deg) rotateZ(360deg); }
+    }
+
+    @keyframes coreFloat {
+      from { translate: 0 -4px; }
+      to   { translate: 0 5px; }
+    }
+
 
     /* =========================================================
        TABLET
@@ -2599,46 +2875,8 @@
       }
 
       .nav-links {
-        position: fixed;
-        inset: 72px 22px auto;
-        display: grid;
-        gap: 0;
-        padding: 10px;
-        background: var(--parchment);
-        color: var(--graphite);
-        border: 1px solid var(--graphite);
-        border-radius: var(--radius-cards, 8px);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
-      }
-
-      .navbar.nav-open .nav-links {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-
-      .nav-links a {
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-        padding: 0 12px;
-        border-bottom: 1px solid var(--soft-rule);
-        opacity: 1;
-      }
-
-      .nav-links a:last-child {
-        border-bottom: 0;
-      }
-
-      .nav-links a::after {
-        display: none;
-      }
-
-      .nav-toggle {
-        display: grid;
+        display:
+          none;
       }
 
       .hero-bottom {
@@ -2659,6 +2897,17 @@
       .hero-index {
         display:
           none;
+      }
+
+      .hero-scene {
+        right: -120px;
+        width: min(62vw, 520px);
+        opacity: 0.52;
+      }
+
+      .objective-layout {
+        grid-template-columns: 1fr;
+        gap: 34px;
       }
 
       .capability-grid {
@@ -2768,10 +3017,6 @@
           8px 12px;
       }
 
-      .nav-links {
-        inset: 64px 18px auto;
-      }
-
       .contact-menu {
 
         top:
@@ -2822,6 +3067,17 @@
 
         font-size:
           15px;
+      }
+
+      .hero-scene {
+        right: -160px;
+        top: 47%;
+        width: 460px;
+        opacity: 0.30;
+      }
+
+      .scene-note {
+        display: none;
       }
 
       .hero-actions {
@@ -2949,16 +3205,21 @@
     @media
     (prefers-reduced-motion: reduce) {
 
-      html {
-        scroll-behavior: auto;
-      }
+      *,
+      *::before,
+      *::after {
 
-      .hero-title-word,
-      .hero-bottom,
-      .hero-kicker-line {
-        animation: none;
-        opacity: 1;
-        transform: none;
+        scroll-behavior:
+          auto !important;
+
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
       }
 
       [data-reveal],
@@ -2971,12 +3232,9 @@
           none;
       }
 
-      .button,
-      .button-arrow,
-      .nav-links,
-      .contact-menu,
-      .nav-toggle-lines span {
-        transition-duration: 120ms;
+      .gyro-ring,
+      .gyro-core {
+        animation: none !important;
       }
     }
 
@@ -3001,7 +3259,6 @@
   <nav
     class="navbar"
     id="navbar"
-    aria-label="Primary navigation"
   >
 
     <div class="container nav-inner">
@@ -3023,7 +3280,7 @@
       </a>
 
 
-      <div class="nav-links" id="navLinks">
+      <div class="nav-links">
 
         <a href="#capabilities">
           What I Do
@@ -3051,24 +3308,8 @@
       <div class="nav-actions">
 
         <button
-          class="nav-toggle"
-          id="navToggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="navLinks"
-          aria-label="Open section navigation"
-        >
-          <span class="nav-toggle-lines" aria-hidden="true">
-            <span></span>
-            <span></span>
-          </span>
-        </button>
-
-        <button
           class="nav-contact"
           id="contactButton"
-          type="button"
-          aria-haspopup="true"
           aria-expanded="false"
           aria-controls="contactMenu"
         >
@@ -3136,6 +3377,22 @@
         Engineering / Technology / Ventures / 2026
       </div>
 
+      <div class="hero-scene" aria-hidden="true">
+        <div class="scene-axis a1"></div>
+        <div class="scene-axis a2"></div>
+
+        <div class="gyro" id="heroGyro">
+          <div class="gyro-ring r1"></div>
+          <div class="gyro-ring r2"></div>
+          <div class="gyro-ring r3"></div>
+          <div class="gyro-core"></div>
+        </div>
+
+        <div class="scene-note">
+          system / observe / iterate
+        </div>
+      </div>
+
 
       <div class="container hero-inner">
 
@@ -3176,12 +3433,12 @@
 
           <p class="hero-description">
 
-            Engineer, builder and problem solver.
-
-            I explore difficult technical and computational
-            problems, design practical solutions, build
-            prototypes and collaborate with people who want
-            to turn ambitious ideas into something real.
+            My main objective is simple: take difficult technical,
+            computational and real-world problems, understand them
+            deeply, and turn them into practical systems, prototypes
+            and better solutions. I build across engineering,
+            software and the physical world — and I collaborate with
+            people who want to turn ambitious ideas into something real.
 
           </p>
 
@@ -3222,6 +3479,46 @@
       </div>
 
     </header>
+
+
+    <!-- =====================================================
+         MAIN OBJECTIVE
+    ====================================================== -->
+
+    <section class="objective-band">
+
+      <div class="container objective-layout" data-reveal>
+
+        <div>
+          <div class="eyebrow">00 / Main objective</div>
+
+          <p class="objective-statement">
+            Understand the problem. Build the system. Test it in the real world.
+          </p>
+        </div>
+
+        <div class="objective-list">
+
+          <div class="objective-item">
+            <span>01</span>
+            <p>Translate vague or difficult problems into clear technical questions.</p>
+          </div>
+
+          <div class="objective-item">
+            <span>02</span>
+            <p>Prototype with the simplest useful combination of software, electronics and engineering.</p>
+          </div>
+
+          <div class="objective-item">
+            <span>03</span>
+            <p>Iterate through evidence, testing and real constraints instead of designing for appearance alone.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
 
 
     <!-- =====================================================
@@ -3634,7 +3931,7 @@
 
               <span class="project-link">
 
-                Case study coming soon
+                Case study coming soon →
 
               </span>
 
@@ -3679,7 +3976,7 @@
 
               <span class="project-link">
 
-                Research archive coming soon
+                Research archive coming soon →
 
               </span>
 
@@ -3724,7 +4021,7 @@
 
               <span class="project-link">
 
-                Experiments coming soon
+                Experiments coming soon →
 
               </span>
 
@@ -4126,19 +4423,9 @@
             rel="noopener noreferrer sponsored"
           >
 
-            Visit Exness — sponsored link →
+            Explore Exness platform →
 
           </a>
-
-
-          <p class="market-disclosure">
-
-            <strong>Sponsored referral disclosure:</strong>
-            This link leads to Exness, a third-party platform.
-            Before proceeding, review Exness’s own terms,
-            eligibility requirements and risk disclosures.
-
-          </p>
 
         </div>
 
@@ -4290,52 +4577,12 @@
 
   <script>
 
-    document.documentElement.classList.add(
-      "motion-ready"
-    );
-
     /* =======================================================
        NAVBAR SCROLL STATE
     ======================================================== */
 
     const navbar =
       document.getElementById("navbar");
-
-    const navToggle =
-      document.getElementById("navToggle");
-
-    const navLinksPanel =
-      document.getElementById("navLinks");
-
-    function closeSectionNavigation() {
-
-      navbar.classList.remove("nav-open");
-      navToggle.setAttribute("aria-expanded", "false");
-      navToggle.setAttribute("aria-label", "Open section navigation");
-    }
-
-    navToggle.addEventListener("click", function () {
-
-      const willOpen =
-        !navbar.classList.contains("nav-open");
-
-      navbar.classList.toggle("nav-open", willOpen);
-      navToggle.setAttribute("aria-expanded", String(willOpen));
-      navToggle.setAttribute(
-        "aria-label",
-        willOpen ? "Close section navigation" : "Open section navigation"
-      );
-
-      if (willOpen) {
-        closeContactMenu();
-      }
-    });
-
-    navLinksPanel.addEventListener("click", function (event) {
-      if (event.target.closest("a")) {
-        closeSectionNavigation();
-      }
-    });
 
     function updateNavbar() {
 
@@ -4398,8 +4645,6 @@
 
     function openContactMenu() {
 
-      closeSectionNavigation();
-
       contactMenu.classList.add(
         "active"
       );
@@ -4456,18 +4701,8 @@
 
         }
 
-        if (!navbar.contains(event.target)) {
-          closeSectionNavigation();
-        }
-
       }
     );
-
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 960) {
-        closeSectionNavigation();
-      }
-    });
 
     document.addEventListener(
       "keydown",
@@ -4477,20 +4712,7 @@
           event.key === "Escape"
         ) {
 
-          const contactWasOpen =
-            contactMenu.classList.contains("active");
-
-          const navigationWasOpen =
-            navbar.classList.contains("nav-open");
-
           closeContactMenu();
-          closeSectionNavigation();
-
-          if (contactWasOpen) {
-            contactButton.focus();
-          } else if (navigationWasOpen) {
-            navToggle.focus();
-          }
 
         }
 
@@ -4612,10 +4834,6 @@
                     link.style.opacity =
                       "0.55";
 
-                    link.removeAttribute(
-                      "aria-current"
-                    );
-
                   }
                 );
 
@@ -4640,11 +4858,6 @@
 
                   active.style.opacity =
                     "1";
-
-                  active.setAttribute(
-                    "aria-current",
-                    "location"
-                  );
 
                 }
 
@@ -4673,7 +4886,66 @@
       }
     );
 
+
+    /* =======================================================
+       MINIMAL 3D INTERACTION
+       Precise rather than decorative.
+    ======================================================== */
+
+    const canUsePointerMotion =
+      window.matchMedia("(pointer:fine)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const hero = document.querySelector(".hero");
+    const gyro = document.getElementById("heroGyro");
+
+    if (canUsePointerMotion && hero && gyro) {
+
+      hero.addEventListener("pointermove", function (event) {
+
+        const rect = hero.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width - 0.5;
+        const py = (event.clientY - rect.top) / rect.height - 0.5;
+
+        gyro.style.setProperty("--gyro-x", `${-12 - py * 12}deg`);
+        gyro.style.setProperty("--gyro-y", `${20 + px * 18}deg`);
+
+      });
+
+      hero.addEventListener("pointerleave", function () {
+        gyro.style.setProperty("--gyro-x", "-12deg");
+        gyro.style.setProperty("--gyro-y", "20deg");
+      });
+
+    }
+
+
+    if (canUsePointerMotion) {
+
+      document.querySelectorAll(".project").forEach(function (card) {
+
+        card.addEventListener("pointermove", function (event) {
+
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+          card.style.setProperty("--project-rx", `${-y * 4}deg`);
+          card.style.setProperty("--project-ry", `${x * 5}deg`);
+
+        });
+
+        card.addEventListener("pointerleave", function () {
+          card.style.setProperty("--project-rx", "0deg");
+          card.style.setProperty("--project-ry", "0deg");
+        });
+
+      });
+
+    }
+
   </script>
 
 </body>
 </html>
+```
